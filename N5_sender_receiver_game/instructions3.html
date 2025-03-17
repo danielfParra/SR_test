@@ -1,0 +1,84 @@
+{{ block title }}
+Instructions
+{{ endblock }}
+
+{{ block styles }}
+<!-- Load the custom css styles -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body ">
+
+        <h3>
+       How does the Matching of Player As and Player Bs work?
+    </h3>
+<p>
+    At the beginning of the experiment, you will be randomly allocated into <b>groups of {{ Constants.POOL_SIZE }} participants</b>. in your group you will only have
+    participants with your same role. You will be always be matched with a different pool of participants that has a different role than yours.
+    In every round of the experiment, Player As and Player Bs are <b>randomly re-matched into pairs.</b>
+    This means that in any round, any Player A in your matching group can be matched with any Player B in your matching group.
+</p>
+
+{{ if player.participant.treatment == "Decode" }}
+<p>
+    Each matching group always consists of <b>two Decode-type</b> Player B's and <b>three Direct-type</b> Player B's.
+    This means that, among the five Player B's in your matching group, two of them will need to decode the message sent by Player A, while the other three will not need to decode the message. The computer will <b>randomly select</b> which Player B's will need to <b>decode</b> the message.
+</p>
+<p>
+    Player A never knows whether the Player B they are matched with is a Decode-type or a Direct-type.
+</p>
+{{ endif }}
+
+<p>
+    The matching for each round is done by the computer.
+    The computer will randomly select a Player A and a Player B to create each group.
+    For an illustration see the video below.
+</p>
+
+<div class="d-flex justify-content-center align-items-center">
+    {% if Constants.POOL_SIZE == 5 %}
+    <video class="video-fluid" width="640" height="640" controls>
+        <source src="{% static 'global/Matching.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% elif Constants.POOL_SIZE == 4 %}
+        <video class="video-fluid" width="640" height="640" controls>
+            <source src="{% static 'global/N4_Matching.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    {% else %}
+    <video class="video-fluid" width="640" height="640" controls>
+        <source src="{% static 'global/Matching.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% endif %}
+</div>
+<br>
+
+<br>
+<p>
+    This process is repeated for each round of the experiment.
+</p>
+
+    </div>
+        </div>
+
+        {{ next_button }}
+
+
+
+{{ endblock }}
+
+{% block scripts %}
+
+<!-- Load the custom javascript functions -->
+
+
+<script src="{% static 'global/myJs.js' %}"></script>
+<script src="https://kit.fontawesome.com/46026ecfac.js" crossOrigin="anonymous"></script>
+
+{% endblock %}

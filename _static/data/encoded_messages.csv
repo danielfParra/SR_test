@@ -1,0 +1,200 @@
+number,encoding
+1,(3 &times; 2) &minus; 5
+2,((5 &times; 5) / 5) &minus; 3
+3,(4 &times; 1) &minus; 1
+4,(3 &times; 1) + 1
+5,(1 &times; 5) + 0
+6,(1 &times; 1) + 5
+7,(2 &times; 5) &minus; 3
+
+1,(1 &times; 3) &minus; 2
+2,(1 &times; 1) + 1
+3,((13 &minus; 2) + 7) / 6
+4,(1 &times; 2) + 2
+5,(2 &times; 3) &minus; 1
+6,((12 &times; 3) / 4) &minus; 3
+7,((6 &times; 6) / 3) &minus; 5
+
+1,(1 &times; 4) &minus; 3
+2,((6 &times; 4) / 4) &minus; 4
+3,((6 &times; 2) / 4) + 0
+4,(3 &times; 3) &minus; 5
+5,(3 &times; 3) &minus; 4
+6,(5 &times; 1) + 1
+7,((10 &times; 3) / 3) &minus; 3
+
+1,(1 &times; 3) &minus; 2
+2,(1 &times; 5) &minus; 3
+3,(3 &times; 1) + 0
+4,(1 &times; 5) &minus; 1
+5,(1 &times; 2) + 3
+6,(1 &times; 2) + 4
+7,((6 &times; 4) / 2) &minus; 5
+
+1,(1 &times; 5) &minus; 4
+2,(3 &times; 2) &minus; 4
+3,((9 &times; 2) / 3) &minus; 3
+4,(24 / 2) + (2 &minus; 10)
+5,((7 &times; 2) / 2) &minus; 2
+6,((15 &times; 2) / 3) &minus; 4
+7,(4 &times; 2) &minus; 1
+
+1,(3 &times; 2) &minus; 5
+2,(3 &times; 2) &minus; 4
+3,(2 &times; 3) &minus; 3
+4,(3 &times; 1) + 1
+5,((9 &times; 3) / 3) &minus; 4
+6,((11 &times; 5) / 5) &minus; 5
+7,(5 &times; 2) &minus; 3
+
+1,(1 &times; 1) + 0
+2,(3 &times; 2) &minus; 4
+3,((8 &times; 2) / 2) &minus; 5
+4,((6 &times; 4) / 3) &minus; 4
+5,((8 &times; 2) / 2) &minus; 3
+6,((5 &times; 3) / 5) + 3
+7,((10 &times; 4) / 4) &minus; 3
+
+1,(1 &times; 2) &minus; 1
+2,(3 &times; 2) &minus; 4
+3,((12 &times; 2) / 3) &minus; 5
+4,(1 &times; 5) &minus; 1
+5,((29 &minus; 6) + 12) / 7
+6,((7 &times; 5) / 5) &minus; 1
+7,((6 &times; 10) / 5) &minus; 5
+
+1,(1 &times; 3) &minus; 2
+2,(3 &times; 2) &minus; 4
+3,(4 &times; 2) &minus; 5
+4,(4 &times; 1) + 0
+5,((6 &times; 4) / 3) &minus; 3
+6,((11 &times; 4) / 4) &minus; 5
+7,(1 &times; 4) + 3
+
+1,(1 &times; 2) &minus; 1
+2,((22 &times; 7) / 14) &minus; 9
+3,(2 &times; 3) &minus; 3
+4,((6 &times; 5) / 5) &minus; 2
+5,(5 &times; 2) &minus; 5
+6,(1 &times; 5) + 1
+7,((5 &times; 8) / 5) &minus; 1
+
+1,(4 &times; 1) &minus; 3
+2,(5 &times; 1) &minus; 3
+3,((8 &times; 4) / 4) &minus; 5
+4,(1 &times; 4) + 0
+5,((12 &times; 3) / 4) &minus; 4
+6,((8 &times; 3) / 4) + 0
+7,((6 &times; 6) / 3) &minus; 5
+
+1,(1 &times; 5) &minus; 4
+2,((20 &times; 9) / 14) &minus; 2
+3,(1 &times; 4) &minus; 1
+4,(3 &times; 2) &minus; 2
+5,(4 &times; 2) &minus; 3
+6,(1 &times; 4) + 2
+7,((15 &times; 5) &minus; 5) / 5 + 1
+
+1,(2 &times; 3) &minus; 5
+2,(3 &times; 1) &minus; 1
+3,((6 &times; 2) / 2) &minus; 3
+4,((6 &times; 4) / 3) &minus; 4
+5,(1 &times; 4) + 1
+6,(1 &times; 2) + 4
+7,((10 &times; 2) / 5) + 3
+
+1,(3 &times; 1) &minus; 2
+2,((20 &times; 2) / 5) &minus; 6
+3,(2 &times; 2) &minus; 1
+4,((5 &times; 8) / 5) &minus; 4
+5,((5 &times; 3) / 5) + 2
+6,((10 &times; 5) &minus; 8) / 7
+7,(3 &times; 3) &minus; 2
+
+1,((8 &times; 2) / 4) &minus; 3
+2,(3 &times; 1) &minus; 1
+3,(3 &times; 1) + 0
+4,(2 &times; 2) + 0
+5,((10 &times; 2) / 5) + 1
+6,(4 &times; 2) &minus; 2
+7,((5 &times; 6) / 3) &minus; 3
+
+1,((11 &minus; 5) / 3) &minus; 1
+2,(4 &times; 1) &minus; 2
+3,((18 &minus; 9) + 9) / 6
+4,((5 &times; 7) / 5) &minus; 3
+5,((5 &times; 9) / 5) &minus; 4
+6,(3 &times; 1) + 3
+7,((5 &times; 3) / 3) + 2
+
+1,((6 &times; 4) / 4) &minus; 5
+2,(2 &times; 3) &minus; 4
+3,(1 &times; 2) + 1
+4,(1 &times; 5) &minus; 1
+5,((5 &times; 3) / 5) + 2
+6,(24 / 3) + (3 &times; 2) &minus; 8
+7,(1 &times; 4) + 3
+
+1,((10 &times; 2) / 4) &minus; 4
+2,(5 &times; 1) &minus; 3
+3,((13 &minus; 3) &minus; 1) / 3
+4,((8 &times; 3) / 3) &minus; 4
+5,((26 &minus; 9) + 18) / 7
+6,((5 &times; 10) / 5) &minus; 4
+7,((9 &times; 3) / 3) &minus; 2
+
+1,((9 &times; 2) / 3) &minus; 5
+2,(4 &times; 1) &minus; 2
+3,(2 &times; 1) + 1
+4,(3 &times; 2) &minus; 2
+5,((10 &times; 4) / 5) &minus; 3
+6,((12 &times; 2) / 3) &minus; 2
+7,((16 &times; 7) &minus; 14) / 14
+
+1,((23 &minus; 11) / 4) &minus; 2
+2,(5 &times; 1) &minus; 3
+3,(2 &times; 3) &minus; 3
+4,(3 &times; 3) &minus; 5
+5,(2 &times; 5) &minus; 5
+6,((15 &times; 2) / 5) + 0
+7,(3 &times; 3) &minus; 2
+
+1,(1 &times; 3) &minus; 2
+2,((24 &times; 9) / 18) &minus; 10
+3,((16 &minus; 5) + 4) / 5
+4,(5 &times; 1) &minus; 1
+5,(5 &times; 2) &minus; 5
+6,((14 &times; 2) / 4) &minus; 1
+7,(2 &times; 5) &minus; 3
+
+1,(1 &times; 3) &minus; 2
+2,((6 &times; 3) / 3) &minus; 4
+3,((22 &minus; 4) + 6) / 8
+4,((5 &times; 7) / 5) &minus; 3
+5,((10 &times; 5) / 5) &minus; 5
+6,((6 &times; 2) / 4) + 3
+7,((8 &times; 5) / 5) &minus; 1
+
+1,(2 &times; 1) &minus; 1
+2,((16 &times; 11) / 22) &minus; 6
+3,((8 &times; 2) / 2) &minus; 5
+4,(5 &times; 1) &minus; 1
+5,(5 &times; 2) &minus; 5
+6,(13 / 5) + (5 &times; 2 &minus; 2)
+7,((10 &times; 2) / 4) + 2
+
+1,((22 &minus; 10) / 6) &minus; 1
+2,(1 &times; 3) &minus; 1
+3,(1 &times; 2) + 1
+4,((7 &times; 3) / 3) &minus; 3
+5,((10 &times; 2) / 4) + 0
+6,((5 &times; 9) / 5) &minus; 3
+7,((9 &times; 4) / 3) &minus; 5
+
+1,(3 &times; 2) &minus; 5
+2,(2 &times; 2) &minus; 2
+3,((28 &minus; 14) + 7) / 7
+4,(1 &times; 2) + 2
+5,(3 &times; 2) &minus; 1
+6,((10 &times; 2) / 5) + 2
+7,(2 &times; 1) + 5

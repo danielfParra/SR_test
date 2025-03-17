@@ -1,0 +1,90 @@
+{{ block title }}
+Instructions
+{{ endblock }}
+
+{{ block styles }}
+<!-- Load the custom css styles -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body ">
+
+        <h3>
+            Decoding the Message
+        </h3>
+
+    <p>
+        In the experiment, there will be two types of Player B, which we will call <b>Decoder</b> and <b>Direct.</b> The <b>Decoder</b> will have to decode the message sent by Player A. The <b>Direct</b> will receive the message directly.
+    </p>
+
+    <p>
+        <input id="info_decode" type="button" value="&#xf178" onclick="button_click(info_decode, decode);" />
+    </p>
+
+    <div id="decode" class="hidden-paragraph">
+        <p>
+            Both types will receive the following type of message from Player A:
+        </p>
+        <div class="d-flex justify-content-center" data-intro="Message Player A." data-step="5" id="message-box">
+            <div class="card text-dark bg-light mb-3" style="width: 24rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><strong>Player A's message:</strong></h5>
+                    <p class="card-text">To receive the highest payoff, you should guess <b>X</b>.</p>
+                </div>
+            </div>
+        </div>
+
+    <p>
+        The <b>Direct</b> type will directly observe the number that Player A intended to send. The <b>Decoder</b> will instead see the message in the form of a mathematical expression.
+        The decoding tasks will be of <strong>similar</strong> difficulty as the ones you solved at the beginning of the experiment.
+        For example, if Player A intended to send the number 3, the <b>Decoder</b> might see the message <q>To receive the highest payoff, you should guess <b>2&times;3&nbsp;&minus;&nbsp;3.</b></q>
+    </p>
+    <p>
+        <input id="info_questions" type="button" value="&#xf178" onclick="button_click(info_questions, questions);" />
+    </p>    
+    </div>
+
+    <div id="questions" class="hidden-paragraph">
+    <p>
+        The <b>Decoder</b> then needs to answer two questions:
+        <ol>
+            <li>What is the number that Player A intended to send?</li>
+            <li>What is the secret number?</li>
+        </ol>
+        Importantly, the <b>Decoder</b> cannot submit a guess about the secret number without first correctly answering the initial question.
+    </p>
+    <p>
+        <input id="info_consequences" type="button" value="&#xf178" onclick="buttonAppear(); button_click(info_consequences, consequences);" />
+    </p>
+    </div>
+    
+    <div id="consequences" class="hidden-paragraph">
+        Please note the following:
+        <ul>
+            <li>Player B has {{ Constants.TIME_PER_ROUND }} seconds to submit a guess. If a Decoder does not manage to do this because they spend too much time decoding the message, Player A's number will be submitted as their guess.</li>
+            <li>A Decoder can <b>only submit an answer</b> to the mathematical expression every <b>{{ Constants.ATTEMPT_DELAY }} seconds.</b> Therefore, it is typically not a good idea to try to solve the mathematical expression by simply guessing it.</li>
+        </ul>
+
+    </div>
+</div>
+    </div>
+<div id="next" style="display: none">
+    {{ next_button }}
+</div>
+
+
+{{ endblock }}
+
+{% block scripts %}
+
+<!-- Load the custom javascript functions -->
+
+
+<script src="{% static 'global/myJs.js' %}"></script>
+<script src="https://kit.fontawesome.com/46026ecfac.js" crossOrigin="anonymous"></script>
+
+{% endblock %}

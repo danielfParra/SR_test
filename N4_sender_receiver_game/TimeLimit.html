@@ -1,0 +1,81 @@
+{{ block title }}
+Instructions
+{{ endblock }}
+
+{{ block styles }}
+<!-- Load the custom css styles -->
+<link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
+<link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body ">
+
+        <h3>
+            Time Limits
+        </h3>
+
+    <p>
+        In each round, Player A will have <b>{{Constants.TIME_PER_ROUND }} seconds time</b> to
+        choose a message. Player B will then have {{Constants.TIME_PER_ROUND }} seconds
+        time to make a guess. After Player B makes a guess, both players will observe feedback for 5 seconds.
+        Then, a new round starts.
+    </p>
+
+    <p>
+        Make sure that you stay within the {{Constants.TIME_PER_ROUND }} seconds allotted to you. If you don't, this will have consequences for your bonus payment.
+    </p>
+
+    <p>
+        <input id="info_buttonA" type="button" value="&#xf178" onclick="button_click(info_buttonA, PlayerA);" />
+    </p>
+
+    <div class="hidden-paragraph" id="PlayerA">
+    <p>
+        Here is what happens if <strong>Player A</strong> does not send a message in time:
+        <ul>
+            <li>Player A will receive <strong>no bonus</strong> for sure for this round.</li>
+            <li>Player B will receive no message but can still make a guess.</li>
+            <li>Player B gets paid according to Player B's guess.</li>
+        </ul>
+    </p>
+
+    <p>
+        <input id="info_buttonB" type="button" value="&#xf178" onclick="buttonAppear(); button_click(info_buttonB, PlayerB);" />
+    </p>
+
+    </div>
+
+    <div class="hidden-paragraph" id="PlayerB">
+    <p>
+        Here is what happens if <strong>Player B</strong> does not make a guess in time:
+        <ul>
+            <li>Player B's guess will be set equal to Player A's message. For example, if Player A advised "You should guess 5" and Player B fails to respond in time, Player B's guess will be 5.</li>
+            <li>Both players get paid according to Player B's guess.</li>
+        </ul>
+    </p>
+    <p>
+        If both players fail to stay within the time limit, both players will receive no bonus for the round.
+    </p>
+    
+    </div>
+    </div>
+</div>
+<div id="next" style="display: none">
+    {{ next_button }}
+</div>
+
+
+{{ endblock }}
+
+{% block scripts %}
+
+<!-- Load the custom javascript functions -->
+
+
+<script src="{% static 'global/myJs.js' %}"></script>
+<script src="https://kit.fontawesome.com/46026ecfac.js" crossOrigin="anonymous"></script>
+
+{% endblock %}
