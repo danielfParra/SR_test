@@ -1,32 +1,45 @@
 {{ block title }}
- Your Role
+ Tu Rol
 {{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 {{ endblock }}
 
 {{ block content }}
 <div class="card bg-light m-3">
-    <div class="card-body ">
+    <div class="card-body">
+        <p>
+            Hoy, eres
+            <b>
+                {{ if player.participant.role == "Player A" }}
+                    Jugador A
+                {{ else }}
+                    Jugador B
+                {{ endif }}
+            </b>
+            {{ if player.participant.role == "Player B" }}
+                del tipo
+                {{ if player.participant.receiver_type == "direct" }}
+                    <b>directo</b>
+                {{ else }}
+                    <b>decodificador</b>
+                {{ endif }}
+            {{ endif }}.
+        </p>
+
     <p>
-        Today, you are <b>{{ player.participant.role }}</b>{{ if player.participant.role == "Player B"}} of the {{ if player.participant.receiver_type == "direct" }}<b>direct</b>{{ else }}<b>decode</b>{{ endif }} type{{ endif }}.
+        Mantendrás este rol durante las <b>{{Constants.num_rounds}}</b> rondas del juego.
     </p>
 
     <p>
-        You will keep this role for all <b>{{Constants.num_rounds}}</b> rounds of the game.
+        <i> Antes de comenzar, nos gustaría que respondieras las preguntas en la siguiente página para verificar tu comprensión.</i>
     </p>
-
-    <p>
-        <i> Before starting, we’d like you to answer the questions on the next page to check your understanding.</i>
-    </p>
-
-
 
     </div>
 </div>
-    {{ next_button }}
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
 
 {{ endblock }}

@@ -1,9 +1,9 @@
 {{ block title }}
-Instructions
+Instrucciones
 {{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 {{ endblock }}
@@ -14,11 +14,12 @@ Instructions
     <div class="card-body ">
 
         <h3>
-            Decoding the Message
+            Decodificando el Mensaje
         </h3>
 
     <p>
-        In the experiment, there will be two types of Player B, which we will call <b>Decoder</b> and <b>Direct.</b> The <b>Decoder</b> will have to decode the message sent by Player A. The <b>Direct</b> will receive the message directly.
+        En el experimento, habrá dos tipos de Jugador B, a los que llamaremos
+        <b>Decodificador</b> y <b>Directo.</b> El <b>Decodificador</b> tendrá que decodificar el mensaje enviado por el Jugador A. El <b>Directo</b> recibirá el mensaje directamente.
     </p>
 
     <p>
@@ -27,21 +28,22 @@ Instructions
 
     <div id="decode" class="hidden-paragraph">
         <p>
-            Both types will receive the following type of message from Player A:
+            Ambos tipos recibirán el siguiente tipo de mensaje del Jugador A:
         </p>
-        <div class="d-flex justify-content-center" data-intro="Message Player A." data-step="5" id="message-box">
+        <div class="d-flex justify-content-center" data-intro="Mensaje del Jugador A." data-step="5" id="message-box">
             <div class="card text-dark bg-light mb-3" style="width: 24rem;">
                 <div class="card-body text-center">
-                    <h5 class="card-title"><strong>Player A's message:</strong></h5>
-                    <p class="card-text">To receive the highest payoff, you should guess <b>X</b>.</p>
+                    <h5 class="card-title"><strong>Mensaje del Jugador A:</strong></h5>
+                    <p class="card-text">Para recibir la mayor ganancia, deberías elegir <b>X</b>.</p>
                 </div>
             </div>
         </div>
 
     <p>
-        The <b>Direct</b> type will directly observe the number that Player A intended to send. The <b>Decoder</b> will instead see the message in the form of a mathematical expression.
-        The decoding tasks will be of <strong>similar</strong> difficulty as the ones you solved at the beginning of the experiment.
-        For example, if Player A intended to send the number 3, the <b>Decoder</b> might see the message <q>To receive the highest payoff, you should guess <b>2&times;3&nbsp;&minus;&nbsp;3.</b></q>
+        El tipo <b>Directo</b> observará directamente el número que el Jugador A pretendía enviar. El <b>Decodificador</b> verá el mensaje en forma de una expresión matemática.
+        Las tareas de decodificación serán de dificultad <strong>similar</strong> a las que resolviste al inicio del experimento.
+        Por ejemplo, si el Jugador A pretendía enviar el número 3, el <b>Decodificador</b> podría ver el mensaje <q>Para recibir la mayor ganancia, deberías elegir
+        <b>((14 &minus; 2) &times; 2)/ 8).</b></q>
     </p>
     <p>
         <input id="info_questions" type="button" value="&#xf178" onclick="button_click(info_questions, questions);" />
@@ -50,12 +52,13 @@ Instructions
 
     <div id="questions" class="hidden-paragraph">
     <p>
-        The <b>Decoder</b> then needs to answer two questions:
+        El <b>Decodificador</b> debe responder dos preguntas antes de que se acabe el tiempo:
         <ol>
-            <li>What is the number that Player A intended to send?</li>
-            <li>What is the secret number?</li>
+            <li>¿Cuál es el número que el Jugador A pretendía enviar?</li>
+            <li>¿Cuál es tu suposición del número secreto?</li>
         </ol>
-        Importantly, the <b>Decoder</b> cannot submit a guess about the secret number without first correctly answering the initial question.
+        Es importante destacar que el <b>Decodificador</b> no puede adivinar el número secreto hasta que identifique correctamente el número que el Jugador A intentó enviar.
+
     </p>
     <p>
         <input id="info_consequences" type="button" value="&#xf178" onclick="buttonAppear(); button_click(info_consequences, consequences);" />
@@ -63,17 +66,17 @@ Instructions
     </div>
     
     <div id="consequences" class="hidden-paragraph">
-        Please note the following:
+        <p><b>Importante:</b></p>
         <ul>
-            <li>Player B has {{ Constants.TIME_PER_ROUND }} seconds to submit a guess. If a Decoder does not manage to do this because they spend too much time decoding the message, Player A's number will be submitted as their guess.</li>
-            <li>A Decoder can <b>only submit an answer</b> to the mathematical expression every <b>{{ Constants.ATTEMPT_DELAY }} seconds.</b> Therefore, it is typically not a good idea to try to solve the mathematical expression by simply guessing it.</li>
+            <li>El Jugador B tiene <b>{{ Constants.TIME_PER_ROUND }} segundos</b> para hacer una suposición. Si el Decodificador se queda sin tiempo, el número que el Jugador A envió se envía automáticamente como la suposición.</li>
+            <li>Los Decodificadores deben esperar <b>{{ Constants.ATTEMPT_DELAY }} segundos</b> entre intentos de decodificar la expresión matemática. No se recomienda adivinar al azar.</li>
         </ul>
 
     </div>
 </div>
     </div>
 <div id="next" style="display: none">
-    {{ next_button }}
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
 </div>
 
 
@@ -81,7 +84,7 @@ Instructions
 
 {% block scripts %}
 
-<!-- Load the custom javascript functions -->
+<!-- Cargar las funciones JavaScript personalizadas -->
 
 
 <script src="{% static 'global/myJs.js' %}"></script>

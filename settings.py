@@ -30,8 +30,8 @@ SESSION_CONFIGS = [
         name='BOTs_sender_receiver_game_decode',
         display_name="BOTS Sender-Receiver Game: Decode",
         use_browser_bots=True,
-        num_demo_participants=20,
-        app_sequence=['consent', 'welcome', 'N5_sender_receiver_game', 'payment_info', 'survey'],
+        num_demo_participants=16,
+        app_sequence=['consent', 'welcome', 'N4_sender_receiver_game', 'payment_info', 'survey'],
         num_rounds=3,
         treatment='Decode'
     ),
@@ -44,10 +44,84 @@ SESSION_CONFIGS = [
     ),
 ]
 
+SESSION_CONFIGS = [
+    # N5 Sessions
+    dict(
+        name='N5_sender_receiver_game_babbling',
+        display_name="N5 Sender-Receiver Game: Babbling",
+        num_demo_participants=2,
+        app_sequence=['consent','welcome','decoding_task', 'N5_sender_receiver_game', 'payment_info', 'survey'],
+        num_rounds=3,
+        treatment='Babbling'
+    ),
+    dict(
+        name='N5_sender_receiver_game_truthbutton',
+        display_name="N5 Sender-Receiver Game: TruthButton",
+        num_demo_participants=2,
+        app_sequence=['consent','welcome','decoding_task', 'N5_sender_receiver_game', 'payment_info', 'survey'],
+        num_rounds=3,
+        treatment='TruthButton'
+    ),
+    dict(
+        name='N5_sender_receiver_game_decode',
+        display_name="N5 Sender-Receiver Game: Decode",
+        num_demo_participants=2,
+        app_sequence=['consent','welcome','decoding_task', 'N5_sender_receiver_game', 'payment_info', 'survey'],
+        num_rounds=3,
+        treatment='Decode'
+    ),
+
+    # N4 Sessions (same structure, different app)
+    dict(
+        name='N4_sender_receiver_game_babbling',
+        display_name="N4 Sender-Receiver Game: Babbling",
+        num_demo_participants=2,
+        app_sequence=['consent','welcome','decoding_task', 'N4_sender_receiver_game', 'payment_info', 'survey'],
+        num_rounds=3,
+        treatment='Babbling'
+    ),
+    dict(
+        name='N4_sender_receiver_game_truthbutton',
+        display_name="N4 Sender-Receiver Game: TruthButton",
+        num_demo_participants=2,
+        app_sequence=['consent','welcome','decoding_task', 'N4_sender_receiver_game', 'payment_info', 'survey'],
+        num_rounds=3,
+        treatment='TruthButton'
+    ),
+    dict(
+        name='N4_sender_receiver_game_decode',
+        display_name="N4 Sender-Receiver Game: Decode",
+        num_demo_participants=2,
+        app_sequence=['consent','welcome','decoding_task', 'N4_sender_receiver_game', 'payment_info', 'survey'],
+        num_rounds=3,
+        treatment='Decode'
+    ),
+    dict(
+        name='BOTs_sender_receiver_game_decode',
+        display_name="BOTS Sender-Receiver Game: Decode",
+        use_browser_bots=True,
+        num_demo_participants=16,
+        app_sequence=['consent', 'welcome', 'N4_sender_receiver_game', 'payment_info', 'survey'],
+        num_rounds=3,
+        treatment='Decode'
+    ),
+        dict(
+        name='survey',
+        display_name="Survey",
+        num_demo_participants=20,
+        app_sequence=['survey'],
+        num_rounds=1,
+    ),
+]
+
 ROOMS = [
     dict(
-        name='econ_lab',
-        display_name='Experimental Economics Lab'
+        name='N4_room',
+        display_name='Room for N4 sender-receiver sessions',
+    ),
+    dict(
+        name='N5_room',
+        display_name='Room for N5 sender-receiver sessions',
     ),
 ]
 

@@ -12,19 +12,19 @@
 
     <!-- Right Pane -->
     <div class="right-pane" style="width: 50%; background-color: #fff; padding: 20px; box-sizing: border-box; overflow-y: auto;">
-        <h3 data-intro="Round number" data-step="3">Round X: Send a Message to Player B</h3>
+        <h3 data-intro="Número de ronda" data-step="3">Ronda X: Envía un Mensaje al Jugador B</h3>
 
-        <p>You are Player A. Your task is to send a message to Player B.</p>
+        <p>Eres el Jugador A. Tu tarea es enviar un mensaje al Jugador B.</p>
 
         <p>
             <label for="id_sender_choice" style="font-size: 20px;">
-                Choose a number to send as your message to Player B.
+                Elige un número para enviar como tu mensaje al Jugador B.
             </label>
-            <p data-intro="Choose your number" data-step="5">
+            <p data-intro="Elige tu número" data-step="5">
             <select name="sender_choice" id="sender_choice" class="form-select form-select-lg" oninput="valueInput(this.value)">
-                <option value="" selected>Choose here</option>
+                <option value="" selected>Elige aquí</option>
                 {{ if player.participant.treatment != "Babbling" }}
-                <option value="8">🤖 Send True Secret Number (via Computer)</option>
+                <option value="8">🤖 Enviar número Secreto (vía Computador)</option>
                 {{ endif }}
                 <option value="1">1️⃣</option>
                 <option value="2">2️⃣</option>
@@ -45,13 +45,13 @@
                 <div class="d-flex justify-content-center">
                     <div class="card text-dark bg-light mb-3" style="width: 24rem;">
                         <div class="card-body text-center">
-                            <p class="card-text">To receive the highest payoff, you should guess <b><span id="message"></span></b>.</p>
+                            <p class="card-text">Para recibir la mayor ganancia, deberías elegir <b><span id="message"></span></b>.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto" data-intro="Submit-Button" data-step="7">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+            <div class="d-grid gap-2 col-6 mx-auto" data-intro="Botón de Envío" data-step="7">
+                <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
             </div>
         </div>
     </div>
@@ -62,35 +62,35 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.0.0/introjs.min.css" />
 
 <script>
-    let tourStarted = false; // Ensures the tour only runs once
+    let tourStarted = false; // Asegura que el tour solo se ejecute una vez
     var intro = introJs();
 
     intro.setOptions({
             steps: [
                 {   title: 'Tutorial',
-                    intro: "This is your decision screen. It will remain constant for all rounds of the game. Press 'Next' for an overview."},
-                {   title: 'Game summary',
-                    element: '.left-pane', intro: 'This part of the screen helps you remember the setup of the game. All players will see such a reminder while playing the game.' },
-                {   title: 'Round number',
-                    element: 'h3', intro: 'Here you can see which round you are in. In the experiment, \'X\' will vary between 1-30.' },
-                {   title: 'Choosing a message',
-                    element: '#sender_choice', intro: 'You select your message by choosing one of the options from the dropdown menu.<br> Please choose any option now as a test.' },
-                {   title: 'Your message to Player B',
-                    element: '#message-box', intro: 'Player B will see this message before making a guess.' },
+                    intro: "Esta es tu pantalla de decisión. Permanecerá constante para todas las rondas del juego. Presiona 'Siguiente' para una visión general."},
+                {   title: 'Resumen del juego',
+                    element: '.left-pane', intro: 'Esta parte de la pantalla te ayuda a recordar la configuración del juego. Todos los jugadores verán un recordatorio similar mientras juegan.' },
+                {   title: 'Número de ronda',
+                    element: 'h3', intro: 'Aquí puedes ver en qué ronda estás. En el experimento, \'X\' variará entre 1-30.' },
+                {   title: 'Eligiendo un mensaje',
+                    element: '#sender_choice', intro: 'Seleccionas tu mensaje eligiendo una de las opciones del menú desplegable.<br> Por favor elige cualquier opción ahora como prueba.' },
+                {   title: 'Tu mensaje al Jugador B',
+                    element: '#message-box', intro: 'El Jugador B verá este mensaje antes de hacer una suposición.' },
                 {
-                    title: 'Time limit',
+                    title: 'Límite de tiempo',
                     element: 'h3',
-                    intro: 'In the experiment, you will have a time limit to make your decision. You will see your remaining time in a countdown at the top of the page. <br> For this tutorial, there is no time limit.'
+                    intro: 'En el experimento, tendrás un límite de tiempo para tomar tu decisión. Verás tu tiempo restante en una cuenta regresiva en la parte superior de la página. <br> Para este tutorial, no hay límite de tiempo.'
                 },
-                {   title: 'Submit button',
-                    element: '.btn-success', intro: 'Click here to proceed to the next page. You can either proceed now or close this tutorial to further familiarize yourself with the screen. Press "Submit" once you are ready!' }
+                {   title: 'Botón de envío',
+                    element: '.btn-success', intro: 'Haz clic aquí para proceder a la siguiente página. Puedes proceder ahora o cerrar este tutorial para familiarizarte más con la pantalla. ¡Presiona "Enviar" cuando estés listo!' }
             ],
             showStepNumbers: true,
-            nextLabel: 'Next',
-            prevLabel: 'Back',
-            doneLabel: 'Close',
+            nextLabel: 'Siguiente',
+            prevLabel: 'Atrás',
+            doneLabel: 'Cerrar',
             exitOnOverlayClick: false,
-            exitOnEsc: false, // Prevents exiting the tour prematurely
+            exitOnEsc: false, // Evita salir del tour prematuramente
             keyboardNavigation: false,
         });
 
@@ -106,7 +106,7 @@
         first_round = 0;
     }
 
-    // Disable the next button when the user should interact with the decision screen first.
+    // Deshabilitar el botón siguiente cuando el usuario debe interactuar primero con la pantalla de decisión.
     intro.onafterchange(function(targetElement) {  
     if(intro._currentStep == 3) { 
         var original_onclick = $('.introjs-nextbutton').get(0).onclick;
@@ -121,7 +121,7 @@
         const preMessageSpan = document.getElementById('pre_message');
 
         if (parseFloat(input_answer) >= 1 && parseFloat(input_answer) <= 7) {
-            preMessageSpan.innerHTML = "Based on your choice, Player B will receive the following message:";
+            preMessageSpan.innerHTML = "Basado en tu elección, el Jugador B recibirá el siguiente mensaje:";
             messageSpan.innerHTML = input_answer;
             show_text(confirmButton);
 
@@ -132,7 +132,7 @@
             }
             
         } else if (parseFloat(input_answer) === 8) {
-            preMessageSpan.innerHTML = "Based on your choice, the computer will replace the \"X\" below with the true secret number:";
+            preMessageSpan.innerHTML = "Basado en tu elección, la computadora reemplazará la \"X\" a continuación con el verdadero número secreto:";
             messageSpan.innerHTML = "X";
             show_text(confirmButton);
             
@@ -149,7 +149,7 @@
         element.classList.add('hidden-paragraph');
     }
 
-    // Submit-Button Validierung
+    // Validación del Botón de Envío
     document.querySelector('.btn-success').addEventListener('click', function(event) {
         const selectedValue = document.getElementById('sender_message').value;
         if (!selectedValue) {
@@ -158,7 +158,7 @@
             errorDiv.style.color = 'red';
             errorDiv.style.marginTop = '10px';
             errorDiv.style.fontWeight = 'bold';
-            errorDiv.innerText = 'Please enter your number before continuing!';
+            errorDiv.innerText = '¡Por favor ingresa tu número antes de continuar!';
             const parentDiv = document.querySelector('.right-pane');
             if (!parentDiv.querySelector('.error-message')) {
                 errorDiv.classList.add('error-message');
@@ -179,8 +179,8 @@
 
 {% block styles %}
 <style>
-/* Hide the close button of the intro tour. 
-	This forces everyone to take the tutorial.
+/* Ocultar el botón de cerrar del tour de introducción. 
+    Esto obliga a todos a tomar el tutorial.
 */
 .introjs-skipbutton{
     visibility: hidden !important;
@@ -191,7 +191,7 @@
 
 </style>
 
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 

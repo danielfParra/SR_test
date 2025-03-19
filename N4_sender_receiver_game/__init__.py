@@ -1,14 +1,13 @@
 from otree.api import *
-import random
 import math
 import random
 import json
 
 
 class Constants(BaseConstants):
-    name_in_url = 'N5_sender_receiver_game'
+    name_in_url = 'N4_sender_receiver_game'
     players_per_group = 2
-    num_rounds = 2
+    num_rounds = 4
     BONUS_AMOUNT = Currency(4000)
     PIECE_RATE_DECODE = Currency(500)  # New constant for the piece rate per correct answer
     HONESTY_GUESS_BONUS = Currency(1000)  # Bonus for honesty guess
@@ -20,11 +19,12 @@ class Constants(BaseConstants):
     ATTEMPT_DELAY = 5
 
     # Variables for matching with pools
-    POOL_SIZE = 4  # Each pool has 4 players
-    TOTAL_PLAYERS = 16
+    POOL_SIZE = 4  # Each pool has 5 players
+    TOTAL_PLAYERS = 24
 
     TIME_PER_TASK = 20  # Time limit for each decoding task (in seconds)
     NUM_TASKS = 6  # Number of tasks in the decoding phase
+
 
     # Predefined lists of payoff-relevant rounds for senders and receivers
     # These vectors should be 12 rounds out of the total 24, for each role
@@ -46,72 +46,72 @@ class Constants(BaseConstants):
     df_decoding_tasks = pd.read_csv(file)
 
     # Control questions.
-    Q_who_knows = 'Who knows the secret number?'
-    O_who_knows = ['Player A', 'Player B', 'Both', 'None']
-    A_who_knows = 'None'
-    H_who_knows = 'Consider how the secret number is determined. If no one has received any information about it, how could anyone know it?'
+    Q_who_knows = '¿Quién conoce el número secreto?'
+    O_who_knows = ['Jugador A', 'Jugador B', 'Ambos', 'Ninguno']
+    A_who_knows = 'Ninguno'
+    H_who_knows = 'Considere cómo se determina el número secreto. Si nadie ha recibido información sobre él, ¿cómo podría alguien conocerlo?'
 
-    Q_task = 'What is your task in this game?'
-    O_task = ['To guess the secret number', 'To write a text', 'To send a message']
-    A_task_PA = 'To send a message'
-    A_task_PB = 'To guess the secret number'
-    H_task = 'Think about what action you are required to take during the game. Your role determines your primary task.'
+    Q_task = '¿Cuál es tu tarea en este juego?'
+    O_task = ['Adivinar el número secreto', 'Escribir un texto', 'Enviar un mensaje']
+    A_task_PA = 'Enviar un mensaje'
+    A_task_PB = 'Adivinar el número secreto'
+    H_task = 'Piensa en qué acción se te requiere realizar durante el juego. Tu rol determina tu tarea principal.'
 
-    Q_payoff_PB = 'How do players in your role (Player B) maximize their payoff?'
-    O_payoff_PB = ['By guessing the secret number as accurately as possible',
-                   'By guessing a number that is as close as possible to the message', 'By always guessing low',
-                   'By always guessing high']
-    A_payoff_PB = 'By guessing the secret number as accurately as possible'
-    H_payoff_PB = 'Your goal is to get as close as possible to the actual secret number. The more precise your guess, the better your payoff.'
+    Q_payoff_PB = '¿Cómo maximizan su pago los jugadores en tu rol (Jugador B)?'
+    O_payoff_PB = ['Adivinando el número secreto lo más precisamente posible',
+                   'Adivinando un número lo más cercano posible al mensaje', 'Siempre adivinando bajo',
+                   'Siempre adivinando alto']
+    A_payoff_PB = 'Adivinando el número secreto lo más precisamente posible'
+    H_payoff_PB = 'Tu objetivo es acercarte lo más posible al número secreto real. Cuanto más precisa sea tu adivinanza, mejor será tu pago.'
 
-    Q_payoff_PA = 'How do players in your role (Player A) maximize their payoff?'
-    O_payoff_PA = ['By making Player B guess the secret number', 'By making Player B guess as high as possible',
-                   'By making Player B guess close to the sent number']
-    A_payoff_PA = 'By making Player B guess as high as possible'
-    H_payoff_PA = 'Your payoff depends on influencing Player B\'s guess. Think exactly about why it depends on the guess.'
+    Q_payoff_PA = '¿Cómo maximizan su pago los jugadores en tu rol (Jugador A)?'
+    O_payoff_PA = ['Haciendo que el Jugador B adivine el número secreto',
+                   'Haciendo que el Jugador B adivine lo más alto posible',
+                   'Haciendo que el Jugador B adivine cerca del número enviado']
+    A_payoff_PA = 'Haciendo que el Jugador B adivine lo más alto posible'
+    H_payoff_PA = 'Tu pago depende de influir en la adivinanza del Jugador B. Piensa exactamente por qué depende de la adivinanza.'
 
-    Q_payoff_other_PA = 'How do players in the other role (Player B) maximize their payoff?'
-    O_payoff_other_PA = ['By guessing the secret number as accurately as possible',
-                         'By guessing a number that is as close as possible to the message', 'By always guessing low',
-                         'By always guessing high']
-    A_payoff_other_PA = 'By guessing the secret number as accurately as possible'
-    H_payoff_other_PA = 'Consider the other player\'s goal. Their best strategy is aligned with identifying the actual secret number, not just responding to the message itself.'
+    Q_payoff_other_PA = '¿Cómo maximizan su pago los jugadores en el otro rol (Jugador B)?'
+    O_payoff_other_PA = ['Adivinando el número secreto lo más precisamente posible',
+                         'Adivinando un número lo más cercano posible al mensaje', 'Siempre adivinando bajo',
+                         'Siempre adivinando alto']
+    A_payoff_other_PA = 'Adivinando el número secreto lo más precisamente posible'
+    H_payoff_other_PA = 'Considera el objetivo del otro jugador. Su mejor estrategia está alineada con identificar el número secreto real, no solo responder al mensaje en sí.'
 
-    Q_payoff_other_PB = 'How do players in the other role (Player A) maximize their payoff?'
-    O_payoff_other_PB = ['By making you guess the secret number', 'By making you guess as high as possible',
-                         'By making you guess close to the sent number']
-    A_payoff_other_PB = 'By making you guess as high as possible'
-    H_payoff_other_PB = 'The other player\'s payoff depends on influencing your guess. Think exactly about why it depends on the guess.'
+    Q_payoff_other_PB = '¿Cómo maximizan su pago los jugadores en el otro rol (Jugador A)?'
+    O_payoff_other_PB = ['Haciendo que adivines el número secreto', 'Haciendo que adivines lo más alto posible',
+                         'Haciendo que adivines cerca del número enviado']
+    A_payoff_other_PB = 'Haciendo que adivines lo más alto posible'
+    H_payoff_other_PB = 'El pago del otro jugador depende de influir en tu adivinanza. Piensa exactamente por qué depende de la adivinanza.'
 
-    Q_independence = 'Consider the following scenario:'
-    Q_independence_text = 'You are in round 3 of the game. In rounds 1 and 2, the secret number was 5. Which of the following statements about the secret number in round 3 is true?'
-    O_independence = ['It is likely that it is larger than 5, since the secret number was 5 in the previous rounds',
-                      'It is likely that it is smaller than 5, since the secret number was 5 in the previous rounds',
-                      'It is likely that it is 5, since the secret number was 5 in the previous rounds',
-                      'Any number is equally likely, regardless of the previous rounds']
-    A_independence = 'Any number is equally likely, regardless of the previous rounds'
-    H_independence = 'Think about how numbers are chosen—does the process remember past values?'
+    Q_independence = 'Considera el siguiente escenario:'
+    Q_independence_text = 'Estás en la ronda 3 del juego. En las rondas 1 y 2, el número secreto fue 5. ¿Cuál de las siguientes afirmaciones sobre el número secreto en la ronda 3 es verdadera?'
+    O_independence = ['Es probable que sea mayor que 5, ya que el número secreto fue 5 en las rondas anteriores',
+                      'Es probable que sea menor que 5, ya que el número secreto fue 5 en las rondas anteriores',
+                      'Es probable que sea 5, ya que el número secreto fue 5 en las rondas anteriores',
+                      'Cualquier número es igualmente probable, independientemente de las rondas anteriores']
+    A_independence = 'Cualquier número es igualmente probable, independientemente de las rondas anteriores'
+    H_independence = 'Piensa en cómo se eligen los números: ¿el proceso recuerda valores pasados?'
 
-    Q_secret_number_generation = 'How is the secret number generated?'
-    O_secret_number_generation = ['It is chosen by Player A', 'It is chosen by Player B',
-                                  'It is randomly generated by the computer']
-    A_secret_number_generation = 'It is randomly generated by the computer'
-    H_secret_number_generation = 'The secret number is determined in a way that neither Player A nor Player B has direct control over it. Think about where the number might come from if no player is responsible for choosing it.'
+    Q_secret_number_generation = '¿Cómo se genera el número secreto?'
+    O_secret_number_generation = ['Lo elige el Jugador A', 'Lo elige el Jugador B',
+                                  'Lo genera aleatoriamente el computador']
+    A_secret_number_generation = 'Lo genera aleatoriamente el computador'
+    H_secret_number_generation = 'El número secreto se determina de una manera que ni el Jugador A ni el Jugador B tienen control directo sobre él. Piensa de dónde podría venir el número si ningún jugador es responsable de elegirlo.'
 
-    Q_no_knowledge_guess = 'No information guess:'
-    Q_no_knowledge_guess_text = 'Suppose you have no information about the secret number. What is the best strategy for guessing it?'
-    O_no_knowledge_guess = ['Guessing a random number', 'Guessing 7 (the highest number)',
-                            'Guessing 1 (the lowest number)', 'Guessing 4 (the average of all possible numbers)']
-    A_no_knowledge_guess = 'Guessing 4 (the average of all possible numbers)'
-    H_no_knowledge_guess = 'If you have no information, your best guess should minimize potential error across all possibilities. Consider what choice balances the risk of guessing too high or too low.'
+    Q_no_knowledge_guess = 'Adivinanza sin información:'
+    Q_no_knowledge_guess_text = 'Supón que no tienes información sobre el número secreto. ¿Cuál es la mejor estrategia para adivinarlo?'
+    O_no_knowledge_guess = ['Adivinar un número aleatorio', 'Adivinar 7 (el número más alto)',
+                            'Adivinar 1 (el número más bajo)', 'Adivinar 4 (el promedio de todos los números posibles)']
+    A_no_knowledge_guess = 'Adivinar 4 (el promedio de todos los números posibles)'
+    H_no_knowledge_guess = 'Si no tienes información, tu mejor adivinanza debería minimizar el error potencial en todas las posibilidades. Considera qué elección equilibra el riesgo de adivinar demasiado alto o demasiado bajo.'
 
-    wrong_answer_message = 'You did not answer this question correctly. The following hint may help you when trying to answer again:'
-    correct_answer_message = 'You answered this question correctly. No need to change it.'
+    wrong_answer_message = 'No respondiste correctamente a esta pregunta. La siguiente pista puede ayudarte cuando intentes responder de nuevo:'
+    correct_answer_message = 'Respondiste correctamente a esta pregunta. No necesitas cambiarla.'
 
     # Templates
-    ReceiverReminder = 'N4_sender_receiver_game/templates/ReceiverReminder.html'
-    SenderReminder = 'N4_sender_receiver_game/templates/SenderReminder.html'
-
+    ReceiverReminder = 'N5_sender_receiver_game/templates/ReceiverReminder.html'
+    SenderReminder = 'N5_sender_receiver_game/templates/SenderReminder.html'
 
 class Subsession(BaseSubsession):
     def creating_session(self):
@@ -124,6 +124,7 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
+
     secret_number = models.IntegerField()
     sender_choice = models.IntegerField()
     sender_message = models.IntegerField()
@@ -149,23 +150,26 @@ class Player(BasePlayer):
     decoding_answer = models.IntegerField(blank=True)  # Stores the answer for each task
     task_number = models.IntegerField(initial=1)  # Tracks the current task (1 to 10)
     correct_answers = models.IntegerField(initial=0)  # Tracks how many correct answers the player has given
+    receiver_type = models.StringField()  # Store 'decode' or 'direct'
+
 
     # Control question fields
-    wrong_answer = models.IntegerField(initial=1)
-    wrong_answer_count = models.IntegerField(initial=0)
-    Q_task = models.StringField(label=Constants.Q_task, initial='na')
-    Q_task_count = models.IntegerField(initial=0)
+    wrong_answer = models.IntegerField(initial = 1)
+    wrong_answer_count = models.IntegerField(initial = 0)
+    Q_task = models.StringField(label = Constants.Q_task, initial = 'na')
+    Q_task_count = models.IntegerField(initial = 0)
 
-    Q_payoff = models.StringField(initial='na')
-    Q_payoff_count = models.IntegerField(initial=0)
-    Q_payoff_other = models.StringField(initial='na')
-    Q_payoff_other_count = models.IntegerField(initial=0)
-    Q_independence = models.StringField(label=Constants.Q_independence, initial='na')
-    Q_independence_count = models.IntegerField(initial=0)
-    Q_secret_number_generation = models.StringField(label=Constants.Q_secret_number_generation, initial='na')
-    Q_secret_number_generation_count = models.IntegerField(initial=0)
-    Q_no_knowledge_guess = models.StringField(label=Constants.Q_no_knowledge_guess, initial='na')
-    Q_no_knowledge_guess_count = models.IntegerField(initial=0)
+    Q_payoff = models.StringField(initial = 'na')
+    Q_payoff_count = models.IntegerField(initial = 0)
+    Q_payoff_other = models.StringField(initial = 'na')
+    Q_payoff_other_count = models.IntegerField(initial = 0)
+    Q_independence = models.StringField(label = Constants.Q_independence, initial = 'na')
+    Q_independence_count = models.IntegerField(initial = 0)
+    Q_secret_number_generation = models.StringField(label = Constants.Q_secret_number_generation, initial = 'na')
+    Q_secret_number_generation_count = models.IntegerField(initial = 0)
+    Q_no_knowledge_guess = models.StringField(label = Constants.Q_no_knowledge_guess, initial = 'na')
+    Q_no_knowledge_guess_count = models.IntegerField(initial = 0)
+
 
     is_sender_payoff_relevant = models.BooleanField(initial=False)
     is_receiver_payoff_relevant = models.BooleanField(initial=False)
@@ -180,7 +184,6 @@ def Q_task_choices(player):
     random.shuffle(L)
     return L
 
-
 def Q_payoff_choices(player):
     if player.role == 'Player A':
         L = Constants.O_payoff_PA.copy()
@@ -188,7 +191,6 @@ def Q_payoff_choices(player):
         L = Constants.O_payoff_PB.copy()
     random.shuffle(L)
     return L
-
 
 def Q_payoff_other_choices(player):
     if player.role == 'Player A':
@@ -198,24 +200,20 @@ def Q_payoff_other_choices(player):
     random.shuffle(L)
     return L
 
-
 def Q_independence_choices(player):
     L = Constants.O_independence.copy()
     random.shuffle(L)
     return L
-
 
 def Q_secret_number_generation_choices(player):
     L = Constants.O_secret_number_generation.copy()
     random.shuffle(L)
     return L
 
-
 def Q_no_knowledge_guess_choices(player):
     L = Constants.O_no_knowledge_guess.copy()
     random.shuffle(L)
     return L
-
 
 def check_cq_answers(answer, solution, count):
     if answer != solution:
@@ -290,7 +288,7 @@ class MatchingWaitPage(WaitPage):
         players = subsession.get_players()
         num_players = len(players)
 
-        # ✅ If n=2, let oTree handle matching (skip pools)
+     # ✅ If n=2, let oTree handle matching (skip pools)
         if num_players == 2:
             print("\n--- n=2: oTree will automatically match players ---")
             return
@@ -341,7 +339,6 @@ class MatchingWaitPage(WaitPage):
                 f"Player {p2.id_in_subsession} (Pool {p2.participant.vars['pool']})"
             )
 
-
 class instructions1(Page):
     # Only show in the first round
     @staticmethod
@@ -355,7 +352,8 @@ class instructions1(Page):
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
         player.pool = player.participant.vars.get('pool', None)  # ✅ Store pool in Player table
-
+        if player.participant.vars['role'] == Constants.RECEIVER_ROLE:
+            player.receiver_type = player.participant.vars.get('receiver_type', 'unknown')
 
 class instructions2(Page):
     # Only show in the first round
@@ -366,7 +364,6 @@ class instructions2(Page):
     @staticmethod
     def vars_for_template(player: Player):
         return {"round_number": player.round_number}
-
 
 class TimeLimit(Page):
     # Only show in the first round
@@ -389,7 +386,6 @@ class instructions3(Page):
     def vars_for_template(player: Player):
         return {"round_number": player.round_number}
 
-
 class instructions4(Page):
     # Only show in the first round
     @staticmethod
@@ -399,8 +395,7 @@ class instructions4(Page):
     @staticmethod
     def vars_for_template(player: Player):
         return {"round_number": player.round_number}
-
-
+    
 class Decode(Page):
     # Only show in the first round
     @staticmethod
@@ -414,7 +409,7 @@ class Decode(Page):
 
 class Round_number(Page):
     timeout_seconds = 3
-    timer_text = 'The next round starts in:'
+    timer_text = 'La siguiente ronda comienza en:'
 
 
 class role_info(Page):
@@ -427,40 +422,32 @@ class role_info(Page):
     def vars_for_template(player: Player):
         return {"round_number": player.round_number}
 
-
 class ControlQuestions(Page):
     # Only show in the first round
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1 and player.wrong_answer > 0
-
+    
     form_model = 'player'
-    form_fields = ['Q_task', 'Q_payoff', 'Q_payoff_other', 'Q_independence', 'Q_no_knowledge_guess',
-                   'Q_secret_number_generation']
+    form_fields = ['Q_task', 'Q_payoff', 'Q_payoff_other', 'Q_independence', 'Q_no_knowledge_guess', 'Q_secret_number_generation']
 
     @staticmethod
-    def before_next_page(player, timeout_happened):
+    def before_next_page(player,timeout_happened):
         player.wrong_answer = 0
         if player.participant.role == 'Player A':
             a, player.Q_task_count = check_cq_answers(player.Q_task, Constants.A_task_PA, player.Q_task_count)
             b, player.Q_payoff_count = check_cq_answers(player.Q_payoff, Constants.A_payoff_PA, player.Q_payoff_count)
-            c, player.Q_payoff_other_count = check_cq_answers(player.Q_payoff_other, Constants.A_payoff_other_PA,
-                                                              player.Q_payoff_other_count)
+            c, player.Q_payoff_other_count = check_cq_answers(player.Q_payoff_other, Constants.A_payoff_other_PA, player.Q_payoff_other_count)
         else:
             a, player.Q_task_count = check_cq_answers(player.Q_task, Constants.A_task_PB, player.Q_task_count)
             b, player.Q_payoff_count = check_cq_answers(player.Q_payoff, Constants.A_payoff_PB, player.Q_payoff_count)
-            c, player.Q_payoff_other_count = check_cq_answers(player.Q_payoff_other, Constants.A_payoff_other_PB,
-                                                              player.Q_payoff_other_count)
-        d, player.Q_independence_count = check_cq_answers(player.Q_independence, Constants.A_independence,
-                                                          player.Q_independence_count)
-        e, player.Q_no_knowledge_guess_count = check_cq_answers(player.Q_no_knowledge_guess,
-                                                                Constants.A_no_knowledge_guess,
-                                                                player.Q_no_knowledge_guess_count)
-        f, player.Q_secret_number_generation_count = check_cq_answers(player.Q_secret_number_generation,
-                                                                      Constants.A_secret_number_generation,
-                                                                      player.Q_secret_number_generation_count)
+            c, player.Q_payoff_other_count = check_cq_answers(player.Q_payoff_other, Constants.A_payoff_other_PB, player.Q_payoff_other_count)
+        d, player.Q_independence_count = check_cq_answers(player.Q_independence, Constants.A_independence, player.Q_independence_count)
+        e, player.Q_no_knowledge_guess_count = check_cq_answers(player.Q_no_knowledge_guess, Constants.A_no_knowledge_guess, player.Q_no_knowledge_guess_count)
+        f, player.Q_secret_number_generation_count = check_cq_answers(player.Q_secret_number_generation, Constants.A_secret_number_generation, player.Q_secret_number_generation_count)
 
-        player.wrong_answer = max(a, b, c, d, e, f)
+
+        player.wrong_answer = max(a,b,c,d,e,f)
         player.wrong_answer_count += player.wrong_answer
 
 
@@ -470,11 +457,11 @@ class start_page(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
 
+    
     @staticmethod
     def vars_for_template(player: Player):
         return {"round_number": player.round_number}
-
-
+    
 class SenderTutorial(Page):
     form_model = 'group'
     form_fields = ['sender_choice']
@@ -483,7 +470,6 @@ class SenderTutorial(Page):
     def is_displayed(player: Player):
         # Nur für Player A in der ersten Runde
         return player.id_in_group == 1 and player.round_number == 1
-
     @staticmethod
     def vars_for_template(player: Player):
         current_round = player.round_number
@@ -507,6 +493,7 @@ class SenderMessage(Page):
         return player.id_in_group == 1
 
     timeout_seconds = Constants.TIME_PER_ROUND
+    timer_text = '⏳ Tiempo restante:'
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -516,6 +503,7 @@ class SenderMessage(Page):
             is_receiver_payoff_relevant=is_receiver_payoff_relevant
         )
 
+
     @staticmethod
     def before_next_page(player, timeout_happened):
         if timeout_happened:
@@ -524,8 +512,6 @@ class SenderMessage(Page):
         # Generate a new secret number for each round (whether timeout happens or not)
         player.group.secret_number = random.randint(1, 7)
 
-    @staticmethod
-    def before_next_page(player, timeout_happened):
         group = player.group
         current_round = player.round_number
 
@@ -536,20 +522,22 @@ class SenderMessage(Page):
         # Generate a new secret number for each round
         group.secret_number = random.randint(1, 7)
 
-        # Set message
+        # Set message 
         if group.sender_choice == 8:
             group.sender_message = group.secret_number
         else:
             group.sender_message = group.sender_choice
 
-        # Encode message
+        # Encode message 
         print('here')
         print(group.sender_message)
         if group.sender_message == 0:
-            group.sender_message_encoded = 'Player A did not send a number'
+            group.sender_message_encoded = 'El Jugador A no envió un número'
         else:
+            # Get player B in the group
             playerB = group.get_player_by_role(Constants.RECEIVER_ROLE)
             if playerB.participant.receiver_type == "decode":
+            #if player.participant.receiver_type == "decode":
                 df_temp = Constants.df_encodings[Constants.df_encodings['number'] == group.sender_message].sample(1)
                 player.group.sender_message_encoded = df_temp['encoding'].values[0]
             else:
@@ -559,48 +547,45 @@ class SenderMessage(Page):
         player.is_sender_payoff_relevant = current_round in Constants.PREDEFINED_SENDER_ROUNDS
         player.is_receiver_payoff_relevant = current_round in Constants.PREDEFINED_RECEIVER_ROUNDS
 
-
 class WaitForSender(WaitPage):
     template_name = 'N5_sender_receiver_game/ReceiverWaitPage.html'
 
     def is_displayed(player: Player):
         return player.role == Constants.RECEIVER_ROLE
 
-
 class TutorialIntro(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
-
+    
     @staticmethod
     def vars_for_template(player: Player):
         return {"round_number": player.round_number}
-
+    
     @staticmethod
     def before_next_page(player: Group, timeout_happened):
         tutorial_message = random.randint(1, 7)
         player.group.tutorial_message = tutorial_message
-        if player.participant.treatment == "Decode":
+        if player.participant.receiver_type == "decode":
             df_temp = Constants.df_encodings[Constants.df_encodings['number'] == tutorial_message].sample(1)
             player.group.tutorial_message_encoded = df_temp['encoding'].values[0]
         else:
             player.group.tutorial_message_encoded = str(tutorial_message)
 
-
 class ReceiverTutorial(Page):
     form_model = 'group'
-
     @staticmethod
     def get_form_fields(player: Player):
         if player.participant.receiver_type == "decode":
             return ['receiver_guess', 'math_solution']
         else:
             return ['receiver_guess']
-
+    
     @staticmethod
     def is_displayed(player: Player):
         # Nur für Player B in der ersten Runde
         return player.id_in_group == 2 and player.round_number == 1
+    
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -632,7 +617,6 @@ class ReceiverTutorial(Page):
 
 class ReceiverGuess(Page):
     form_model = 'group'
-
     @staticmethod
     def get_form_fields(player: Player):
         if player.participant.receiver_type == "decode":
@@ -645,6 +629,7 @@ class ReceiverGuess(Page):
         return player.id_in_group == 2
 
     timeout_seconds = Constants.TIME_PER_ROUND
+    timer_text = '⏳ Tiempo restante:'
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -659,18 +644,16 @@ class ReceiverGuess(Page):
             sender_message=sender_message,  # Pasar el mensaje del sender
             is_sender_payoff_relevant=is_sender_payoff_relevant  # Pasar si la ronda es payoff-relevant para el Sender
         )
-
     @staticmethod
     def js_vars(player: Player):
         return dict(
-            sender_message=player.group.sender_message,
+            sender_message = player.group.sender_message,
             encoded_message=player.group.sender_message_encoded,
             treatment=player.participant.treatment,
             receiver_type=player.participant.receiver_type,
             max_guess=7,  # Maximum allowed guess
             min_guess=1  # Minimum allowed guess
         )
-
     @staticmethod
     def before_next_page(player, timeout_happened):
         # Only set receiver_guess to 0 if timeout happens
@@ -707,6 +690,7 @@ class Results(Page):
         }
 
     timeout_seconds = Constants.FEEDBACK_TIME
+    timer_text = '⏳ Tiempo restante:'
 
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
@@ -720,11 +704,11 @@ class Results(Page):
 
         # If the round is NOT payoff-relevant, we subtract that round's payout from the cumulative total.
         if not is_sender_payoff_relevant:
-            sender.payoff = 0  # Subtract payment if not relevant
+            sender.payoff = 0 # Subtract payment if not relevant
         if not is_receiver_payoff_relevant:
-            receiver.payoff = 0  # Subtract payment if not relevant
+            receiver.payoff = 0 # Subtract payment if not relevant
 
-        # Instead of setting to 0, we SUBTRACT only the sender-receiver game earnings
+    # Instead of setting to 0, we SUBTRACT only the sender-receiver game earnings
         if not is_sender_payoff_relevant:
             sender.payoff -= Constants.BONUS_AMOUNT if sender.group.sender_wins else Currency(0)
         if not is_receiver_payoff_relevant:
@@ -735,11 +719,12 @@ class Results(Page):
         receiver.payoff = max(receiver.payoff, receiver.correct_answers * Constants.PIECE_RATE_DECODE)
 
         player.pool = player.participant.vars.get('pool', None)  # ✅ Store pool in Player table
+        if player.participant.vars['role'] == Constants.RECEIVER_ROLE:
+            player.receiver_type = player.participant.vars.get('receiver_type', 'unknown')
 
         print(f"Round {current_round}: Sender Payoff = {sender.payoff}, Receiver Payoff = {receiver.payoff}")
         print(f"Total Sender Payoff (Cumulative): {sender.participant.payoff}")
         print(f"Total Receiver Payoff (Cumulative): {receiver.participant.payoff}")
-
 
 class HonestyGuess(Page):
     form_model = 'player'
@@ -748,7 +733,6 @@ class HonestyGuess(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds and player.participant.treatment != "Babbling"
-
 
 class FollowingGuess(Page):
     form_model = 'player'
@@ -761,8 +745,8 @@ class FollowingGuess(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
 
-        # Calculate the honesty and credulity rates.
-        msg = 0
+        # Calculate the honesty and credulity rates. 
+        msg = 0 
         hnum = 0
         cnum = 0
         hmsg = 0
@@ -781,25 +765,23 @@ class FollowingGuess(Page):
                         if p.in_round(r).group.receiver_guess >= 6.8:
                             cnum += 1
 
-        player.group.honesty_rate = hnum / msg
-        player.group.credulity_rate = cnum / hmsg
+        player.group.honesty_rate = hnum / msg if msg > 0 else 0
+        player.group.credulity_rate = cnum / hmsg if hmsg > 0 else 0
 
         if player.participant.treatment != "Babbling":
-            honesty_guess_prob = 1 - (player.group.honesty_rate - player.honesty_guess / 100) ** 2
+            honesty_guess_prob = 1 - (player.group.honesty_rate - player.honesty_guess/100) ** 2
             wins = random.random() < honesty_guess_prob
             player.payoff += Constants.HONESTY_GUESS_BONUS if wins else Currency(0)
 
-        credulity_guess_prob = 1 - (player.group.credulity_rate - player.credulity_guess / 100) ** 2
+        credulity_guess_prob = 1 - (player.group.credulity_rate - player.credulity_guess/100) ** 2
         wins = random.random() < credulity_guess_prob
         player.payoff += Constants.CREDULITY_GUESS_BONUS if wins else Currency(0)
-
 
 class MyWaitPage(WaitPage):
     wait_for_all_groups = True
 
-
 page_sequence = [
-    MatchingWaitPage, instructions1, instructions2, TimeLimit, Decode, instructions3, instructions4,
+    MatchingWaitPage,instructions1, instructions2, TimeLimit, Decode, instructions3, instructions4,
     role_info,
     ControlQuestions, ControlQuestions, ControlQuestions, ControlQuestions, ControlQuestions,
     TutorialIntro, SenderTutorial, ReceiverTutorial, MyWaitPage, start_page,

@@ -1,9 +1,9 @@
 {{ block title }}
-Instructions
+Instrucciones
 {{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 {{ endblock }}
@@ -14,19 +14,20 @@ Instructions
     <div class="card-body ">
 
         <h3>
-            Time Limits
+            Límites de Tiempo
         </h3>
 
     <p>
-        In each round, Player A will have <b>{{Constants.TIME_PER_ROUND }} seconds time</b> to
-        choose a message. Player B will then have {{Constants.TIME_PER_ROUND }} seconds
-        time to make a guess. After Player B makes a guess, both players will observe feedback for 5 seconds.
-        Then, a new round starts.
+        En cada ronda, el Jugador A tendrá <b>{{Constants.TIME_PER_ROUND }} segundos</b> para elegir un mensaje.
+        Luego, el Jugador B tendrá <b>{{Constants.TIME_PER_ROUND }} segundos</b> para hacer una suposición.
+        Después de que el Jugador B haga una suposición, ambos jugadores verán la retroalimentación durante 5 segundos antes de que comience la siguiente ronda.
     </p>
 
     <p>
-        Make sure that you stay within the {{Constants.TIME_PER_ROUND }} seconds allotted to you. If you don't, this will have consequences for your bonus payment.
+        Por favor, completa tus acciones dentro de los <b>{{Constants.TIME_PER_ROUND }} segundos</b>.
+        No hacerlo afectará tus ganancias de bonificación.
     </p>
+
 
     <p>
         <input id="info_buttonA" type="button" value="&#xf178" onclick="button_click(info_buttonA, PlayerA);" />
@@ -34,11 +35,11 @@ Instructions
 
     <div class="hidden-paragraph" id="PlayerA">
     <p>
-        Here is what happens if <strong>Player A</strong> does not send a message in time:
+        Esto es lo que sucede si <strong>el Jugador A</strong> no envía un mensaje a tiempo:
         <ul>
-            <li>Player A will receive <strong>no bonus</strong> for sure for this round.</li>
-            <li>Player B will receive no message but can still make a guess.</li>
-            <li>Player B gets paid according to Player B's guess.</li>
+            <li>El Jugador A <strong>no recibirá bonificación</strong> por esa ronda.</li>
+            <li>El Jugador B no recibirá ningún mensaje pero aún puede hacer una suposición.</li>
+            <li>El pago del Jugador B aún dependerá de su suposición.</li>
         </ul>
     </p>
 
@@ -50,21 +51,22 @@ Instructions
 
     <div class="hidden-paragraph" id="PlayerB">
     <p>
-        Here is what happens if <strong>Player B</strong> does not make a guess in time:
+        Esto es lo que sucede si <strong>el Jugador B</strong> no hace una suposición a tiempo:
         <ul>
-            <li>Player B's guess will be set equal to Player A's message. For example, if Player A advised "You should guess 5" and Player B fails to respond in time, Player B's guess will be 5.</li>
-            <li>Both players get paid according to Player B's guess.</li>
+            <li>La suposición del Jugador B se convertirá automáticamente en el número recomendado por el mensaje del Jugador A. Por ejemplo,
+                si el Jugador A envía el mensaje "Para recibir la mayor ganancia, deberías elegir 5", la suposición del Jugador B se convierte en 5 si no responde a tiempo.</li>
+            <li>Los pagos de ambos jugadores dependerán de esta suposición establecida automáticamente.</li>
         </ul>
     </p>
     <p>
-        If both players fail to stay within the time limit, both players will receive no bonus for the round.
+        Si ambos jugadores no cumplen con el límite de tiempo, ambos jugadores no recibirán bonificación por la ronda.
     </p>
     
     </div>
     </div>
 </div>
 <div id="next" style="display: none">
-    {{ next_button }}
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
 </div>
 
 
@@ -72,7 +74,7 @@ Instructions
 
 {% block scripts %}
 
-<!-- Load the custom javascript functions -->
+<!-- Cargar las funciones JavaScript personalizadas -->
 
 
 <script src="{% static 'global/myJs.js' %}"></script>

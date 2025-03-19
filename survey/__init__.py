@@ -4,74 +4,68 @@ import random
 def make_field(label):
     return models.IntegerField(
         choices=[
-            (1, "Very Favorable"),
-            (2, "Somewhat Favorable"),
-            (3, "Somewhat Unfavorable"),
-            (4, "Very Unfavorable"),
-            (5, "No Opinion"),
-            (6, "Do Not Know"),
+            (1, "Muy favorable"),
+            (2, "Algo favorable"),
+            (3, "Algo desfavorable"),
+            (4, "Muy desfavorable"),
+            (5, "Sin opinión"),
+            (6, "No sé"),
         ],
         label=label,
         widget=widgets.RadioSelect,
     )
-
-
-
 
 class Constants(BaseConstants):
     name_in_url = 'survey'
     players_per_group = None
     num_rounds = 1
 
-
 class Subsession(BaseSubsession):
     pass
-
 
 class Group(BaseGroup):
     pass
 
-
 class Player(BasePlayer):
 
     # Demographics
-    age = models.IntegerField(label='Age', min=13, max=100)
+    age = models.IntegerField(label='Edad', min=13, max=100)
 
     gender = models.IntegerField(
-        label='Gender',
-        choices=[[0, 'Male'], [1, 'Female'], [2, 'Rather not say'], [3, 'Other']]
+        label='Género',
+        choices=[[0, 'Masculino'], [1, 'Femenino'], [2, 'Prefiero no decir'], [3, 'Otro']]
     )
     gender_add = models.StringField(blank=True, label='')
     education = models.IntegerField(
-        choices=[[0, 'Less than High School'],
-                 [1, 'High School'],
-                 [2, 'Some College'],
-                 [3, 'Associate Degree'],
-                 [4, 'Bachelor\'s Degree'],
-                 [5, 'Advanced or Professional Degree']
+        choices=[[0, 'Menos que secundaria'],
+                 [1, 'Secundaria'],
+                 [2, 'Algo de universidad'],
+                 [3, 'Título de asociado'],
+                 [4, 'Título universitario'],
+                 [5, 'Título avanzado o profesional']
                  ],
-        label='What is your highest level of education?'
+        label='¿Cuál es tu nivel más alto de educación?'
     )
     student = models.IntegerField(
-        label='Are you currently enrolled in college?',
-        choices=[[0, 'No'], [1, 'Yes']]
+        label='¿Estás actualmente inscrito en la universidad?',
+        choices=[[0, 'No'], [1, 'Sí']]
     )
     experiments = models.IntegerField(
-        label='Please give a rough estimate about the number of experiments you have participated in before',
+        label='Por favor, da una estimación aproximada del número de experimentos en los que has participado antes',
         blank=True
     )
 
     reasoning = models.LongStringField(
-        label='Please give a concise explanation of how you took your decisions in the experiment',
+        label='Por favor, da una explicación concisa de cómo tomaste tus decisiones en el experimento',
         blank=True
     )
 
     chosen_role = models.IntegerField(
-        choices=[[1, 'Sender'],
-                 [2, 'Receiver'],
-                 [0, 'Indifferent'],
+        choices=[[1, 'Jugador A'],
+                 [2, 'Jugador B'],
+                 [0, 'Indiferente'],
                  ],
-        label='Imagine you were to play the same game again and had a choice, would you rather be Sender or Receiver'
+        label='Imagina que jugaras el mismo juego de nuevo y tuvieras una elección, ¿preferirías ser Jugador A o Jugador B?'
     )
 
     org_fundacion_ideas = make_field("Fundación Ideas para la Paz")
@@ -81,12 +75,9 @@ class Player(BasePlayer):
     org_fundacion_mujer_futuro = make_field("Fundación Mujer y Futuro")
     org_unicef_colombia = make_field("UNICEF Colombia")
 
-
-    
-
 class Demographics(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender',  'education', 'student', 'experiments', 'reasoning', 'chosen_role',
+    form_fields = ['age', 'gender', 'education', 'student', 'experiments', 'reasoning', 'chosen_role',
                    "org_fundacion_ideas",
                    "org_fundacion_mujer",
                    "org_fundacion_corona",
@@ -94,6 +85,5 @@ class Demographics(Page):
                    "org_fundacion_mujer_futuro",
                    "org_unicef_colombia"
                    ]
-
 
 page_sequence = [Demographics]

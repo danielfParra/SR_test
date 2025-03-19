@@ -13,17 +13,17 @@
 
     <!-- Right Pane -->
     <div class="right-pane" style="width: 50%; background-color: #fff; padding: 20px; box-sizing: border-box; overflow-y: auto;">
-        <h3 data-intro="Round number" data-step="3">Round X: Guess the secret number</h3>
+        <h3 data-intro="Número de ronda" data-step="3">Ronda X: Adivina el número secreto</h3>
 
         <p>
-            You are Player B. Your task is to guess the secret number.
+            Eres el Jugador B. Tu tarea es adivinar el número secreto.
         </p>
 
-        <div class="d-flex justify-content-center" data-intro="Message Player A." data-step="5" id="message-box">
+        <div class="d-flex justify-content-center" data-intro="Mensaje del Jugador A." data-step="5" id="message-box">
             <div class="card text-dark bg-light mb-3" style="width: 24rem;">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Player A's message:</h5>
-                    <p class="card-text">To receive the highest payoff, you should guess <b><span id="encoded_message"></span> </b>.</p>
+                    <h5 class="card-title">Mensaje del Jugador A:</h5>
+                    <p class="card-text">Para recibir la mayor ganancia, deberías elegir <b><span id="encoded_message"></span> </b>.</p>
                 </div>
             </div>
         </div>
@@ -32,11 +32,11 @@
 
             <div id="decode_task" class="column ">
                 <p>
-                    What is the number that Player A intended to send?
+                    ¿Cuál es el número que el Jugador A intentó enviar?
                     <p>
                         <select name="math_solution" id="math_solution" class="form-select form-select-lg" oninput="valueInput(this.value)">
-                            <option value="" selected>Choose here</option>
-                            <option value="0">❌ Player A did not send a number</option>
+                            <option value="" selected>Elige aquí</option>
+                            <option value="0">❌ El Jugador A no envió un número</option>
                             <option value="1">1️⃣</option>
                             <option value="2">2️⃣</option>
                             <option value="3">3️⃣</option>
@@ -51,7 +51,7 @@
             <div class="column">
                 <div id="solution_button" class="hidden-paragraph">
                     <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 20px;">
-                        <input id="info_button2" type="button" value="Submit solution" onclick="checkSolution();" />
+                        <input id="info_button2" type="button" value="Enviar solución" onclick="checkSolution();" />
                     </div>
                 </div>
             </div>
@@ -64,10 +64,10 @@
         
         <div id="receiver_guess" class="hidden-paragraph">
         <p>
-            Please guess the secret number. You can enter any number between 1 and 7, including decimals.
+            Por favor, adivina el número secreto. Puedes ingresar cualquier número entre 1 y 7, incluyendo decimales.
         </p>
 
-        <h4 class="card-title" data-intro="Guess slider" data-step="6">Move the slider to select your guess.</h4>
+        <h4 class="card-title" data-intro="Deslizador de adivinanza" data-step="6">Mueve el deslizador para seleccionar tu adivinanza.</h4>
         <br>
         <div class="slider-container">
             <div class="slider-labels">
@@ -84,9 +84,9 @@
                 <h5 id="description"></h5>
         </div>
 
-        <div id="submit_button" class="hidden-paragraph" data-intro="Submit-Button" data-step="7">
+        <div id="submit_button" class="hidden-paragraph" data-intro="Botón de envío" data-step="7">
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
             </div>
         </div>
 
@@ -98,7 +98,7 @@
                 document.getElementById("slider").setAttribute("max", js_vars.max_guess);
                 document.getElementById("slider").setAttribute("min", js_vars.min_guess);
                 let receiver_guess = parseFloat(input.value).toFixed(1);
-                description.innerText = `Your guessed number: ${receiver_guess}`;
+                description.innerText = `Tu número adivinado: ${receiver_guess}`;
 
                 if (parseFloat(input.value) >= 1 && parseFloat(input.value) <= 7) {
                     show_text(submit_button);
@@ -133,27 +133,27 @@
         intro.setOptions({
             steps: [
                 {   title: 'Tutorial',
-                    intro: "This is your decision screen. It will remain constant for all rounds of the game. Press 'Next' for an overview."},
-                {   title: 'Game summary',
-                    element: '.left-pane', intro: 'This part of the screen helps you remember the setup of the game. All players will see such a reminder while playing the game.' },
-                {   title: 'Round number',
-                    element: 'h3', intro: 'Here you can see which round you are in. In the experiment, \'X\' will vary between 1-30.' },
-                {   title: 'Player A\'s message',
-                element: '#message-box', intro: 'Here you can see Player A\'s message.' },
-                {   title: 'Making a guess',
-                    element: '#receiver_guess', intro: 'You make a guess by moving the slider left or right.<br> Please guess any number now as a test.' },
+                    intro: "Esta es tu pantalla de decisión. Permanecerá constante durante todas las rondas del juego. Presiona 'Siguiente' para una visión general."},
+                {   title: 'Resumen del juego',
+                    element: '.left-pane', intro: 'Esta parte de la pantalla te ayuda a recordar la configuración del juego. Todos los jugadores verán un recordatorio similar mientras juegan.' },
+                {   title: 'Número de ronda',
+                    element: 'h3', intro: 'Aquí puedes ver en qué ronda estás. En el experimento, \'X\' variará entre 1-30.' },
+                {   title: 'Mensaje del Jugador A',
+                element: '#message-box', intro: 'Aquí puedes ver el mensaje del Jugador A.' },
+                {   title: 'Haciendo una adivinanza',
+                    element: '#receiver_guess', intro: 'Haces una adivinanza moviendo el deslizador a la izquierda o derecha.<br> Por favor, adivina cualquier número ahora como prueba.' },
                 {
-                    title: 'Time limit',
+                    title: 'Límite de tiempo',
                     element: 'h3',
-                    intro: 'In the real experiment, you will have a time limit to make your decision. You will see your remaining time in a countdown at the top of the page. <br> For this tutorial, there is no time limit.'
+                    intro: 'En el experimento real, tendrás un límite de tiempo para tomar tu decisión. Verás tu tiempo restante en una cuenta regresiva en la parte superior de la página. <br> Para este tutorial, no hay límite de tiempo.'
                 },
-                {   title: 'Submit button',
-                    element: '.btn-success', intro: 'Click here to submit your choice and proceed to the next page. You can either submit now or close this tutorial to further familiarize yourself with the screen. Press "Submit" once you are ready!' }
+                {   title: 'Botón de envío',
+                    element: '.btn-success', intro: 'Haz clic aquí para enviar tu elección y proceder a la siguiente página. Puedes enviar ahora o cerrar este tutorial para familiarizarte más con la pantalla. ¡Presiona "Enviar" cuando estés listo!' }
             ],
             showStepNumbers: true,
-            nextLabel: 'Next',
-            prevLabel: 'Back',
-            doneLabel: 'Close',
+            nextLabel: 'Siguiente',
+            prevLabel: 'Atrás',
+            doneLabel: 'Cerrar',
             exitOnOverlayClick: false,
             exitOnEsc: false, // Prevents exiting the tour prematurely
             keyboardNavigation: false,
@@ -164,29 +164,29 @@
         intro.setOptions({
             steps: [
                 {   title: 'Tutorial',
-                    intro: "This is your decision screen. It will remain constant for all rounds of the game. Press 'Next' for an overview."},
-                {   title: 'Game summary',
-                    element: '.left-pane', intro: 'This part of the screen helps you remember the setup of the game. All players will see such a reminder while playing the game.' },
-                {   title: 'Round number',
-                    element: 'h3', intro: 'Here you can see which round you are in. In the experiment, \'X\' will vary between 1-30.' },
-                {   title: 'Player A\'s message',
-                element: '#message-box', intro: 'Here you can see Player A\'s message. You can observe that it is currently encoded.' },
-                {   title: 'Decoding the message',
-                    element: '#decoding_part', intro: 'You will need to decode Player A\'s message by solving the mathematical expression before making a guess. Please decode the message now to proceed with the tutorial.' },
-                {   title: 'Making a guess',
-                    element: '#receiver_guess', intro: 'After decoding the message, you make a guess by moving the slider left or right.<br> Please guess any number now as a test.' },
+                    intro: "Esta es tu pantalla de decisión. Permanecerá constante durante todas las rondas del juego. Presiona 'Siguiente' para una visión general."},
+                {   title: 'Resumen del juego',
+                    element: '.left-pane', intro: 'Esta parte de la pantalla te ayuda a recordar la configuración del juego. Todos los jugadores verán un recordatorio similar mientras juegan.' },
+                {   title: 'Número de ronda',
+                    element: 'h3', intro: 'Aquí puedes ver en qué ronda estás. En el experimento, \'X\' variará entre 1-30.' },
+                {   title: 'Mensaje del Jugador A',
+                element: '#message-box', intro: 'Aquí puedes ver el mensaje del Jugador A. Puedes observar que actualmente está codificado.' },
+                {   title: 'Decodificando el mensaje',
+                    element: '#decoding_part', intro: 'Necesitarás decodificar el mensaje del Jugador A resolviendo la expresión matemática antes de hacer una adivinanza. Por favor, decodifica el mensaje ahora para continuar con el tutorial.' },
+                {   title: 'Haciendo una adivinanza',
+                    element: '#receiver_guess', intro: 'Después de decodificar el mensaje, haces una adivinanza moviendo el deslizador a la izquierda o derecha.<br> Por favor, adivina cualquier número ahora como prueba.' },
                 {
-                    title: 'Time limit',
+                    title: 'Límite de tiempo',
                     element: 'h3',
-                    intro: 'In the real experiment, you will have a time limit to make your decision. You will see your remaining time in a countdown at the top of the page. <br> For this tutorial, there is no time limit.'
+                    intro: 'En el experimento real, tendrás un límite de tiempo para tomar tu decisión. Verás tu tiempo restante en una cuenta regresiva en la parte superior de la página. <br> Para este tutorial, no hay límite de tiempo.'
                 },
-                {   title: 'Submit-Button',
-                    element: '.btn-success', intro: 'Click here to submit your choice and proceed to the next page. You can either submit now or close this tutorial to further familiarize yourself with the screen. Press "Submit" once you are ready!' }
+                {   title: 'Botón de envío',
+                    element: '.btn-success', intro: 'Haz clic aquí para enviar tu elección y proceder a la siguiente página. Puedes enviar ahora o cerrar este tutorial para familiarizarte más con la pantalla. ¡Presiona "Enviar" cuando estés listo!' }
             ],
             showStepNumbers: true,
-            nextLabel: 'Next',
-            prevLabel: 'Back',
-            doneLabel: 'Close',
+            nextLabel: 'Siguiente',
+            prevLabel: 'Atrás',
+            doneLabel: 'Cerrar',
             exitOnOverlayClick: false,
             exitOnEsc: false, // Prevents exiting the tour prematurely
             keyboardNavigation: false,
@@ -262,7 +262,7 @@ function checkSolution() {
     }
     else {
         show_text(warning_message);
-        document.getElementById('warning_message').innerHTML = "Incorrect solution. Please wait 5 seconds and try again.";
+        document.getElementById('warning_message').innerHTML = "Solución incorrecta. Por favor, espera 5 segundos e intenta de nuevo.";
         hide_text(solutionButton);
         hide_text(decodeTask);
         setTimeout(show_text, 5000, solutionButton);

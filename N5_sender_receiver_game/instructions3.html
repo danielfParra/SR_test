@@ -1,9 +1,9 @@
 {{ block title }}
-Instructions
+Instrucciones
 {{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 {{ endblock }}
@@ -14,46 +14,64 @@ Instructions
     <div class="card-body ">
 
         <h3>
-       How does the Matching of Player As and Player Bs work?
+       ¿Cómo funciona el emparejamiento de Jugadores A y Jugadores B?
     </h3>
+
+
+ <p>
+    Al inicio del experimento, serás colocado aleatoriamente en un <b>grupo de {{ Constants.POOL_SIZE }} participantes</b>
+     que comparten tu mismo rol (ya sea todos Jugadores A o todos Jugadores B).
+     Tu grupo siempre será emparejado con otro grupo que contiene participantes con el rol opuesto.
+</p>
+
 <p>
-    At the beginning of the experiment, you will be randomly allocated into <b>groups of {{ Constants.POOL_SIZE }} participants</b>. in your group you will only have
-    participants with your same role. You will be always be matched with a different pool of participants that has a different role than yours.
-    In every round of the experiment, Player As and Player Bs are <b>randomly re-matched into pairs.</b>
-    This means that in any round, any Player A in your matching group can be matched with any Player B in your matching group.
+    En cada ronda, los Jugadores A y los Jugadores B de estos dos grupos son <b>emparejados aleatoriamente</b>.
+    Esto significa que cualquier Jugador A puede ser emparejado con cualquier Jugador B del otro grupo,
+    y los emparejamientos cambiarán en cada ronda.
 </p>
 
 {{ if player.participant.treatment == "Decode" }}
-<p>
-    Each matching group always consists of <b>two Decode-type</b> Player B's and <b>three Direct-type</b> Player B's.
-    This means that, among the five Player B's in your matching group, two of them will need to decode the message sent by Player A, while the other three will not need to decode the message. The computer will <b>randomly select</b> which Player B's will need to <b>decode</b> the message.
-</p>
-<p>
-    Player A never knows whether the Player B they are matched with is a Decode-type or a Direct-type.
-</p>
+
+    {{ if Constants.POOL_SIZE == 5 }}
+        <p>
+            Cada grupo de Jugadores B siempre incluirá <b>dos jugadores tipo Decode</b> y <b>tres jugadores tipo Direct</b>.
+            Los Jugadores B tipo Decode deben decodificar el mensaje del Jugador A, mientras que los jugadores tipo Direct no necesitan decodificar.
+        </p>
+        <p>
+            El Jugador A nunca sabe si está emparejado con un Jugador B tipo Decode o tipo Direct.
+        </p>
+    {{ elif Constants.POOL_SIZE == 4 }}
+        <p>
+            Cada grupo de Jugadores B siempre incluirá <b>dos jugadores tipo Decode</b> y <b>dos jugadores tipo Direct</b>.
+            Los Jugadores B tipo Decode deben decodificar el mensaje del Jugador A, mientras que los jugadores tipo Direct no necesitan decodificar.
+        </p>
+        <p>
+            El Jugador A nunca sabe si está emparejado con un Jugador B tipo Decode o tipo Direct.
+        </p>
+    {{ endif }}
+
 {{ endif }}
 
 <p>
-    The matching for each round is done by the computer.
-    The computer will randomly select a Player A and a Player B to create each group.
-    For an illustration see the video below.
+    La computadora selecciona aleatoriamente los emparejamientos para cada ronda. Puedes ver el video a continuación para ver cómo funciona esto:
 </p>
+
 
 <div class="d-flex justify-content-center align-items-center">
     {% if Constants.POOL_SIZE == 5 %}
     <video class="video-fluid" width="640" height="640" controls>
         <source src="{% static 'global/Matching.mp4' %}" type="video/mp4">
-        Your browser does not support the video tag.
+        Tu navegador no soporta la etiqueta de video.
     </video>
     {% elif Constants.POOL_SIZE == 4 %}
         <video class="video-fluid" width="640" height="640" controls>
             <source src="{% static 'global/N4_Matching.mp4' %}" type="video/mp4">
-            Your browser does not support the video tag.
+            Tu navegador no soporta la etiqueta de video.
         </video>
     {% else %}
     <video class="video-fluid" width="640" height="640" controls>
         <source src="{% static 'global/Matching.mp4' %}" type="video/mp4">
-        Your browser does not support the video tag.
+        Tu navegador no soporta la etiqueta de video.
     </video>
     {% endif %}
 </div>
@@ -61,13 +79,13 @@ Instructions
 
 <br>
 <p>
-    This process is repeated for each round of the experiment.
+    Este proceso de emparejamiento se repite en cada ronda.
 </p>
 
     </div>
         </div>
 
-        {{ next_button }}
+        <button class="otree-btn-next btn btn-primary">Continuar</button>
 
 
 
@@ -75,7 +93,7 @@ Instructions
 
 {% block scripts %}
 
-<!-- Load the custom javascript functions -->
+<!-- Cargar las funciones JavaScript personalizadas -->
 
 
 <script src="{% static 'global/myJs.js' %}"></script>

@@ -4,7 +4,7 @@ import pandas as pd
 class Constants(BaseConstants):
     name_in_url = 'decoding_task'
     players_per_group = None  # No grouping required
-    PIECE_RATE_DECODE = Currency(100)  # New constant for the piece rate per correct answer
+    PIECE_RATE_DECODE = Currency(500)  # New constant for the piece rate per correct answer
     num_rounds = 1  # Only run the decoding task once
     TIME_PER_TASK = 20
     NUM_TASKS = 6
@@ -85,6 +85,9 @@ class DecodingTaskResults(Page):
             'total_score': player.correct_answers,
             'total_tasks': Constants.NUM_TASKS,
         }
+
+    timeout_seconds = 30
+    timer_text = '⏳ Tiempo restante para continuar:'
 
     @staticmethod
     def before_next_page(player: Player, timeout_happened):

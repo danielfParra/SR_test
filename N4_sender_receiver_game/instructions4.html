@@ -1,9 +1,9 @@
 {{ block title }}
-Instructions
+Instrucciones
 {{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 {{ endblock }}
@@ -13,51 +13,48 @@ Instructions
 <div class="card bg-light m-3">
     <div class="card-body ">
 
-<h3><i class="fas fa-list-ol"></i> Summary: Each Round of the Game Goes as Follows:</h3>
+<h3><i class="fas fa-list-ol"></i> Resumen: Cada ronda del Juego se desarrolla de la siguiente manera:</h3>
         <ol>
-            <li><i class="fas fa-dice"></i> The computer generates a <b>secret number</b>.</li>
-            <li><i class="fas fa-envelope"></i> <b>Player A</b> sends a message to <b>Player B</b>.</li>
-            <li><i class="fas fa-question-circle"></i> <b>Player B</b> receives the message and guesses the secret number.</li>
-            <li><i class="fas fa-chart-bar"></i> Both players receive <b>feedback</b>.</li>
+            <li><i class="fas fa-dice"></i> El computador genera un <b>número secreto</b>.</li>
+            <li><i class="fas fa-envelope"></i> <b>Jugador A</b> envía un mensaje a <b>Jugador B</b>.</li>
+            <li><i class="fas fa-question-circle"></i> <b>Jugador B</b> recibe el mensaje y adivina el número secreto.</li>
+            <li><i class="fas fa-chart-bar"></i> Ambos jugadores reciben <b>retroalimentación</b>.</li>
         </ol>
 <p>
     <input id="info_button3" type="button" value="&#xf178" onclick="buttonAppear(); button_click(info_button3, paragraph3);" />
 </p>
 
 <div id="paragraph3" class="hidden-paragraph">
-  <h3>  Please Keep the Following Points in Mind </h3>
+      <h3>Puntos importantes a recordar</h3>
 <ul>
-    <li>Player A’s expected bonus is higher when Player B guesses a higher number.</li>
-    <li>Player B’s expected bonus is higher if the guess is closer to the secret number.</li>
-    <li>Player A does not know the secret number when sending a message.</li>
-    <li>Player A can choose to send any number 1, 2, 3, 4, 5, 6, 7{{ if player.participant.treatment != "Babbling" }} or can delegate the decision to the computer, who sends the true secret number{{ endif }}.</li>
+    <li>El bono esperado del Jugador A es mayor cuando el Jugador B adivina un número más alto.</li>
+    <li>El bono esperado del Jugador B es mayor si la adivinanza está más cerca del número secreto.</li>
+    <li>El Jugador A no conoce el número secreto al enviar un mensaje.</li>
+    <li>El Jugador A puede elegir enviar cualquier número 1, 2, 3, 4, 5, 6, 7{{ if player.participant.treatment != "Babbling" }} o puede delegar la decisión al computador, quien envía el verdadero número secreto{{ endif }}.</li>
     {{ if player.participant.treatment != "Babbling" }}
-    <li>Player B will never learn whether Player A delegated the decision to the computer or not.</li>
+    <li>El Jugador B nunca sabrá si el Jugador A delegó la decisión al computador o no.</li>
     {{ endif }}
     {{ if player.participant.treatment == "Decode" }}
-    <li>Two out of five Player B's will need to decode Player A's message before making the guess.</li>
+    <li>Algunos Jugadores B necesitarán decodificar el mensaje del Jugador A antes de hacer la adivinanza.</li>
     {{ endif }}
-<!--    <li>Player B knows that Player A doesn't know the secret number.</li>-->
+<!--    <li>El Jugador B sabe que el Jugador A no conoce el número secreto.</li>-->
 </ul>
 
 <p>
-    The experiment ends after <b>{{Constants.num_rounds}} rounds</b> of the game.
+    El experimento termina después de <b>{{Constants.num_rounds}} rondas</b>.
 </p>
     </div>
         </div>
     </div>
 <div id="next" style="display: none">
-        {{ next_button }}
+        <button class="otree-btn-next btn btn-primary">Continuar</button>
 </div>
-
-
 
 {{ endblock }}
 
 {% block scripts %}
 
-<!-- Load the custom javascript functions -->
-
+<!-- Cargar las funciones JavaScript personalizadas -->
 
 <script src="{% static 'global/myJs.js' %}"></script>
 <script src="https://kit.fontawesome.com/46026ecfac.js" crossOrigin="anonymous"></script>

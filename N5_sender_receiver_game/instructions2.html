@@ -1,9 +1,9 @@
 {{ block title }}
-The game
+El juego
 {{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 {{ endblock }}
@@ -14,31 +14,23 @@ The game
     <div class="card-body ">
 
         <h3>
-        <i class="fas fa-coins"></i>  How will the Payoffs be determined?
+        <i class="fas fa-coins"></i>  ¿Cómo se determinarán tus ganancias?
     </h3>
 
     <p>
-        Of the <b>{{ Constants.num_rounds }} rounds</b> of the experiment, the computer will randomly choose <b>half of them,</b>
-        which will be considered <b>relevant</b> for the determination of <b>your payoffs.</b>
-        If a round is randomly chosen to be payoff-relevant,
-        this means that this round will <b>count towards your earnings.</b> Otherwise, it will not.
+        De las <b>{{ Constants.num_rounds }} rondas</b> en este juego,
+        el computador seleccionará aleatoriamente <b>la mitad de las rondas</b> para determinar tus ganancias finales.
+        Estas rondas se llaman <b>relevantes para el pago</b>. Si una ronda es seleccionada como relevante para el pago,
+        afecta directamente tus ganancias.
     </p>
 
     <p>
-      You will <b>never know</b> whether the current round is <b>payoff-relevant</b> for you. Therefore, it is best to treat each round as mattering equally, as each round may be payoff-relevant.
+        <b>No sabrás</b> qué rondas son relevantes para el pago.
+        Por lo tanto, debes tomar cada ronda en serio, ya que puede influir en tus ganancias.
     </p>
 
-    <!---
     <p>
-      You will <b>never know</b> whether the current round is <b>payoff-relevant for you</b>. However, <b>you will be</b> able to see whether the <b>current round is payoff-relevant for your counterpart.</b> You can only influence the counterpart’s earnings when it is their payoff-relevant round.  
-    </p>
-    <p>
-      Which rounds are payoff-relevant for Player A and Player B is <b>determined independently.</b> This means that knowing whether the current round is payoff-relevant for your counterpart does not imply that it is more or less likely that the current round is payoff-relevant for you.
-    </p>
-    -->
-
-    <p>
-        For each payoff-relevant round, the payoffs are as follows:
+        Para cada ronda relevante para el pago, tus ganancias dependen de las siguientes reglas:
     </p>
 
       <p>
@@ -50,28 +42,26 @@ The game
         <br>
 
     <h3>
-         Player A’s Payoff:
+         Ganancias del Jugador A:
     </h3>
+<p>
+    <b>El Jugador A</b> puede ganar un bono de <b>{{Constants.BONUS_AMOUNT}} pesos</b> cada ronda, dependiendo de la suposición del Jugador B.
+    La probabilidad de que el Jugador A gane este bono <b>aumenta</b> a medida que la suposición del Jugador B aumenta.
+</p>
 
- <p>
-    <b>Player A</b> can earn a bonus of <b>{{Constants.BONUS_AMOUNT}} pesos</b> depending on Player B’s guess in this round.
-     In particular, the <b>probability of Player A earning the {{Constants.BONUS_AMOUNT}} pesos bonus</b> is <b>increasing</b> in
-     <b>Player B’s guess.</b> The higher Player B’s guess is, the more likely it is that Player A will win
-     <b>{{Constants.BONUS_AMOUNT}} pesos</b>.
+
+<p>
+    En pocas palabras, el Jugador A ganará más si el Jugador B elige (adivina) un número más alto.
 </p>
 
 <p>
-    Simply put, Player A will earn more if Player B guesses a higher number.
-</p>
+    Si deseas ver una descripción detallada de cómo aumenta tu probabilidad de ganar con la suposición del Jugador B,
+    por favor haz clic en el siguiente botón:
 
-<p>
-    If you want to see a detailed description of how your winning chance increases in Player B’s guess,
-    please click the following button:
-
-<!-- Button trigger modal -->
+<!-- Botón para activar el modal -->
 
 <button type="button" name="more_info" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#moreinfo">
-    Details of Player A’s payoff
+    Detalles del pago del Jugador A
 </button>
 
 <!-- Modal -->
@@ -79,25 +69,25 @@ The game
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Player A’s payoff detailed description</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">Descripción detallada del pago del Jugador A</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
         <p>
-    Player B’s guess is a number between 1 and 7. This number is used to determine
-            Player A’s payoff according to the following formula:
+    La suposición del Jugador B es un número entre 1 y 7. Este número se utiliza para determinar
+            el pago del Jugador A según la siguiente fórmula:
 </p>
 
 <div class="card bg-light my-3">
   <div class="card-body">
     <p class="text-center" style="font-size: 0.8rem;">
-      <b>Probability of Player A receiving {{ Constants.BONUS_AMOUNT }} pesos (in percent)=</b>
+      <b>Probabilidad de que el Jugador A reciba {{ Constants.BONUS_AMOUNT }} pesos (en porcentaje)=</b>
     </p>
     <p class="text-center" style="font-size: 1.5rem;">
         <math>
   <mfrac>
     <mrow>
-      <mi>Player&nbsp;B's&nbsp;guess&nbsp;-&nbsp;1</mi>
+      <mi>Suposición&nbsp;del&nbsp;Jugador&nbsp;B&nbsp;-&nbsp;1</mi>
     </mrow>
     <mn>6</mn>
   </mfrac>
@@ -110,24 +100,24 @@ The game
 
 
 <p>
-    The formula takes the difference between Player B’s guess and 1. The resulting number
-    is divided by 6 and then multiplied by 100. 
+    La fórmula toma la diferencia entre la suposición del Jugador B y 1. El número resultante
+    se divide por 6 y luego se multiplica por 100. 
 </p>
 
 <p>
-    Suppose that Player B’s guess is equal to 7. In this case, the difference is 6,
-    and Player A’s probability of winning the bonus is 100%. In contrast, when Player B’s guess is 1,
-    the difference is equal to 0. This implies that Player A’s probability of winning the bonus is 0%.
+    Supongamos que la suposición del Jugador B es igual a 7. En este caso, la diferencia es 6,
+    y la probabilidad de que el Jugador A gane el bono es del 100%. En contraste, cuando la suposición del Jugador B es 1,
+    la diferencia es igual a 0. Esto implica que la probabilidad de que el Jugador A gane el bono es del 0%.
 </p>
 
 <p>
-    The principle underlying the formula is simple: The closer Player B’s guess is to the highest possible guess,
-    the higher the chance that Player A receives a payoff of <b>{{Constants.BONUS_AMOUNT}} pesos</b>.
+    El principio subyacente de la fórmula es simple: Cuanto más cerca esté la suposición del Jugador B del número más alto posible,
+    mayor será la probabilidad de que el Jugador A reciba un pago de <b>{{Constants.BONUS_AMOUNT}} pesos</b>.
 </p>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -145,28 +135,27 @@ The game
 <p></p>
 
 <h3>
-    Player B’s Payoff:
+    Ganancias del Jugador B:
 </h3>
+
 <p>
-    Player B can also earn a bonus of <b>{{ Constants.BONUS_AMOUNT }} pesos</b> depending on the accuracy
-    of their guess. In particular, the <b>probability of Player B earning the
-    {{ Constants.BONUS_AMOUNT }} pesos</b> bonus <b>increases with the accuracy of Player B’s guess.</b>
-    The more accurate the guess is, the more likely it is that Player B will win <b>{{ Constants.BONUS_AMOUNT }} pesos</b>.
+    El Jugador B también puede ganar un bono de <b>{{ Constants.BONUS_AMOUNT }} pesos</b> cada ronda, dependiendo de la precisión de su suposición.
+    Cuanto más cerca esté la suposición del Jugador B del número secreto, mayor será la probabilidad de ganar el bono.
 </p>
 
 <p>
-    Simply put, Player B earns more when they guess a number closer to the secret number.
+    En pocas palabras, el Jugador B gana más cuando elige (adivina) un número más cercano al número secreto.
 </p>
 
 <p>
-    If you want to see a detailed description of how Player B’s winning chance increases with the
-    accuracy of their guess, please click the following button:
+    Si deseas ver una descripción detallada de cómo aumenta la probabilidad de ganar del Jugador B con la
+    precisión de su suposición, por favor haz clic en el siguiente botón:
 
 
-<!-- Button trigger modal -->
+<!-- Botón para activar el modal -->
 
 <button type="button" name="more_info2" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#moreinfo2">
-    Details of Player B’s payoff
+    Detalles del pago del Jugador B
 </button>
 
 <!-- Modal -->
@@ -174,19 +163,19 @@ The game
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Player B’s payoff detailed description</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel2">Descripción detallada del pago del Jugador B</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
  <p>
-     Player B’s guess is a number between 1 and 7.
-     This number is used to determine Player Bs’s payoff according to the following formula:
+     La suposición del Jugador B es un número entre 1 y 7.
+     Este número se utiliza para determinar el pago del Jugador B según la siguiente fórmula:
 </p>
 
 <div class="card bg-light my-3">
   <div class="card-body">
     <p class="text-center" style="font-size: 0.8rem;">
-      <b>Probability of Player B receiving {{ Constants.BONUS_AMOUNT }} pesos (in percent)=</b>
+      <b>Probabilidad de que el Jugador B reciba {{ Constants.BONUS_AMOUNT }} pesos (en porcentaje)=</b>
     </p>
     <p class="text-center" style="font-size: 1rem;">
       <math>
@@ -200,9 +189,9 @@ The game
   </mrow>
   <mo>&times;</mo>
   <mo>(</mo>
-  <mi>Secret&nbsp;number</mi>
+  <mi>Número&nbsp;secreto</mi>
   <mo>-</mo>
-  <mi>Player&nbsp;B's&nbsp;guess</mi>
+  <mi>Suposición&nbsp;del&nbsp;Jugador&nbsp;B</mi>
   <mo>)</mo>
   <msup>
     <mrow>
@@ -217,25 +206,25 @@ The game
 </div>
 
 <p>
-    The formula takes the square of the difference between Player B’s guess and the secret number.
-    The resulting number is multiplied by a constant and then subtracted from 100.
+    La fórmula toma el cuadrado de la diferencia entre la suposición del Jugador B y el número secreto.
+    El número resultante se multiplica por una constante y luego se resta de 100.
 </p>
 
 <p>
-    Suppose that Player B’s guess is exactly equal to the secret number.
-    In this case, the difference is zero, and Player B’s chance of winning the bonus is 100%.
-    As Player B’s guess moves away from the true value of the secret number,
-    the difference becomes larger, which decreases the probability of winning the bonus.
+    Supongamos que la suposición del Jugador B es exactamente igual al número secreto.
+    En este caso, la diferencia es cero, y la probabilidad de que el Jugador B gane el bono es del 100%.
+    A medida que la suposición del Jugador B se aleja del valor verdadero del número secreto,
+    la diferencia se hace mayor, lo que disminuye la probabilidad de ganar el bono.
 </p>
 
 <p>
-    The principle underlying the formula is simple: The closer Player B’s guess is to the secret number,
-    the higher the chance that Player B receives a payoff of <b>{{ Constants.BONUS_AMOUNT }} pesos</b>.
+    El principio subyacente de la fórmula es simple: Cuanto más cerca esté la suposición del Jugador B del número secreto,
+    mayor será la probabilidad de que el Jugador B reciba un pago de <b>{{ Constants.BONUS_AMOUNT }} pesos</b>.
 </p>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -249,7 +238,7 @@ The game
     </div>
 
 <div id="next" style="display: none">
-        {{ next_button }}
+        <button class="otree-btn-next btn btn-primary">Continuar</button>
 </div>
 
 
@@ -257,7 +246,7 @@ The game
 
 {% block scripts %}
 
-<!-- Load the custom javascript functions -->
+<!-- Cargar las funciones JavaScript personalizadas -->
 
 
 <script src="{% static 'global/myJs.js' %}"></script>

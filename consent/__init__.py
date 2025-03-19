@@ -94,10 +94,10 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     consent = models.IntegerField(
-        label='''I have read the data protection
-    information and I consent to participation in the experiment and the stated
-    processing of data:''',
-        choices=[[0, 'No'], [1, 'Yes']],
+        label='''He leído la información sobre
+    de datos y doy mi consentimiento para participar en el experimento y en el
+    tratamiento de datos:''',
+        choices=[[0, 'No'], [1, 'Sí']],
     )
     # consent2 = models.IntegerField(
     #     label='''Can you be in front of the screen for the
@@ -115,9 +115,9 @@ class Consent(Page):
 
 def consent_error_message(player, value):
     if value != 1:
-        return '''If you do not agree, you cannot participate in today\'s
-        experiment. In this case, you can close the window and contact the
-        experimenters.'''
+        return '''Si no está de acuerdo, no puede participar en el experimento de hoy.
+        En este caso, puede cerrar la ventana y ponerse en contacto con los
+        experimentadores.'''
 
 
 # class Consent2(Page):

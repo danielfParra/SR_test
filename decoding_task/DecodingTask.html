@@ -1,39 +1,52 @@
 {% extends "otree/Page.html" %}
 
 {% block title %}
-    Decoding Task
+    Tarea de Decodificación
 {% endblock %}
 
 {% block content %}
 
 <div class="card bg-light border-dark mb-3">
     <div class="card-body">
-        <h5 id="task-title">Decoding Task {{ task_number }} of {{ total_tasks }}</h5>
+        <h5 id="task-title">Tarea de Decodificación {{ task_number }} de {{ total_tasks }}</h5>
         <hr>
         <div class="alert alert-warning text-center" role="alert">
-    ⏳ Time left: <span id="timer">{{ time_per_task }}</span> seconds
+    ⏳ Tiempo restante: <span id="timer">{{ time_per_task }}</span> segundos
         </div>
-        <p>Decode the following message:</p>
+        <p>Decodifica el siguiente mensaje:</p>
         <div class="card bg-white mb-3">
             <div class="card-body">
                 <h4 class="text-center"><b id="encoding">{{ encoding }}</b></h4>
             </div>
         </div>
 
-        <!-- Hidden field to store correct answers and update dynamically -->
+        <!-- Campo oculto para almacenar respuestas correctas y actualizar dinámicamente -->
         <input type="hidden" name="correct_answers" id="correct_answers" value="{{ correct_answers }}">
 
-        <div class="form-group">
-            <label for="decoding_answer">Your answer:</label>
-            <input type="number" id="decoding_answer" name="decoding_answer" class="form-control" required>
-        </div>
+<div class="form-group d-flex justify-content-center mt-4">
+    <div style="width: 300px;">
+        <p>Selecciona el número que el Jugador A intentó enviar:</p>
+        <select name="decoding_answer" id="decoding_answer" class="form-select form-select-lg text-center text-center mx-auto">
+            <option value="" selected>Elige aquí</option>
+            <option value="1">1️⃣</option>
+            <option value="2">2️⃣</option>
+            <option value="3">3️⃣</option>
+            <option value="4">4️⃣</option>
+            <option value="5">5️⃣</option>
+            <option value="6">6️⃣</option>
+            <option value="7">7️⃣</option>
+        </select>
+    </div>
+</div>
+
+
 
         <div class="mt-3">
-            <button id="submit-button" type="button" class="btn btn-primary">Submit</button>
+            <button id="submit-button" type="button" class="btn btn-primary">Enviar</button>
         </div>
 
         <div class="alert alert-danger mt-3" id="warning-message" style="display: none;">
-            Incorrect answer. Please wait 5 seconds before trying again.
+            Respuesta incorrecta. Por favor espera 5 segundos antes de intentar de nuevo.
         </div>
 
 
@@ -49,19 +62,19 @@
     let timer;
 
     $(window).bind('beforeunload', function() {
-    if (currentTaskIndex < tasks.length - 1) {  // Show the warning only if it's not the last task
-        return "'Are you sure you want to leave the page? All data will be lost!";
+    if (currentTaskIndex < tasks.length - 1) {  // Mostrar la advertencia solo si no es la última tarea
+        return "'¿Estás seguro de que quieres salir de la página? ¡Todos los datos se perderán!";
     }
 });
 
     document.addEventListener("DOMContentLoaded", function() {
         startTask();
 
-        // Allow "Enter" key to submit the answer instead of leaving the page
+        // Permitir que la tecla "Enter" envíe la respuesta en lugar de salir de la página
     document.getElementById("decoding_answer").addEventListener("keypress", function(event) {
       if (event.key === "Enter") {
-        event.preventDefault();  // Prevent page reload or unintended form submission
-        document.getElementById("submit-button").click();  // Trigger the submit button click
+        event.preventDefault();  // Prevenir recarga de página o envío de formulario no intencionado
+        document.getElementById("submit-button").click();  // Activar el clic del botón de enviar
     }
 });
 
@@ -95,7 +108,7 @@
 
             if (timeLeft <= 0) {
                 clearInterval(timer);
-                showNextTask();  // Auto-submit when time runs out
+                showNextTask();  // Auto-enviar cuando el tiempo se agote
             }
         }, 1000);
     }
@@ -126,21 +139,21 @@
     function showNextTask() {
         currentTaskIndex++;
         if (currentTaskIndex >= tasks.length) {
-            submitForm();  // Submit the form if it’s the last task
+            submitForm();  // Enviar el formulario si es la última tarea
         } else {
             updateTaskContent();
         }
     }
 
     function updateTaskContent() {
-        document.getElementById("task-title").innerText = `Decoding Task ${currentTaskIndex + 1} of {{ total_tasks }}`;
+        document.getElementById("task-title").innerText = `Tarea de Decodificación ${currentTaskIndex + 1} de {{ total_tasks }}`;
         document.getElementById("encoding").innerHTML = tasks[currentTaskIndex]['encoding'];
         document.getElementById("decoding_answer").value = "";
         startTask();
     }
 
     function submitForm() {
-        document.getElementById("correct_answers").dispatchEvent(new Event('change'));  // Ensure it's updated
+        document.getElementById("correct_answers").dispatchEvent(new Event('change'));  // Asegurarse de que esté actualizado
         let form = document.querySelector("form");
         form.submit();
     }

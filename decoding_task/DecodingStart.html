@@ -1,7 +1,7 @@
 {% extends "otree/Page.html" %}
 
 {% block title %}
-    The Decoding Task Will Start Soon
+    La Tarea de Decodificación Comenzará Pronto
 {% endblock %}
 
 {% block content %}
@@ -9,19 +9,16 @@
 <div class="card bg-light m-3">
     <div class="card-body ">
 
-    After you click the button below, the decoding task will start.  
+    Después de hacer clic en el botón de abajo, la tarea de decodificación comenzará.  
 
     </div>
 </div>
 
-
-
-{{ next_button }}
-
+<button class="otree-btn-next btn btn-primary">Continuar</button>
 
 {% endblock %}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 {{ endblock }}

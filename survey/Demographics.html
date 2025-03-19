@@ -1,8 +1,8 @@
-{{ block title }} Final Questionnaire {{ endblock }}
+{{ block title }} Cuestionario Final {{ endblock }}
 {{ block content }}
 
 {{ block styles }}
-<!-- Load the custom CSS styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 
@@ -17,9 +17,9 @@
 
 {{ endblock }}
 
-<p>Please answer the following questions.</p>
+<p>Por favor, responde las siguientes preguntas.</p>
 
-<!-- ✅ Display General Demographic Fields (Excludes Table Fields) -->
+<!-- ✅ Mostrar Campos Demográficos Generales (Excluye Campos de Tabla) -->
 {{ formfield 'age' }}
 {{ formfield 'gender' }}
 {{ formfield 'education' }}
@@ -30,17 +30,17 @@
 
 <br>
 
-<h2>Please share your opinion about the following organizations.</h2>
+<h2>Por favor, comparte tu opinión sobre las siguientes organizaciones.</h2>
 
 <table class="table">
     <tr>
-        <th>Organization</th>
-        <th>Very Favorable</th>
-        <th>Somewhat Favorable</th>
-        <th>Somewhat Unfavorable</th>
-        <th>Very Unfavorable</th>
-        <th>No Opinion</th>
-        <th>Do Not Know</th>
+        <th>Organización</th>
+        <th>Muy Favorable</th>
+        <th>Algo Favorable</th>
+        <th>Algo Desfavorable</th>
+        <th>Muy Desfavorable</th>
+        <th>Sin Opinión</th>
+        <th>No la conozco</th>
     </tr>
 
     <tr>
@@ -86,6 +86,6 @@
     </tr>
 </table>
 
-{{ next_button }}
+<button class="otree-btn-next btn btn-primary">Continuar</button>
 
 {{ endblock }}

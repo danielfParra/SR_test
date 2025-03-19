@@ -4,26 +4,26 @@
 <div style="display: flex; margin: 0;">
 
 
-    <!-- Left Pane -->
+    <!-- Panel Izquierdo -->
 <div class="left-pane" style="width: 50%; background-color: #f8f9fa; padding: 20px; box-sizing: border-box; overflow-y: auto; border-right: 1px solid #ddd;">
 
     {{ include Constants.ReceiverReminder }}
     
 </div>
 
-    <!-- Right Pane -->
+    <!-- Panel Derecho -->
     <div class="right-pane" style="width: 50%; background-color: #fff; padding: 20px; box-sizing: border-box; overflow-y: auto;">
-        <h3 data-intro="Round number" data-step="3">Round {{player.round_number}}: Guess the secret number</h3>
+        <h3 data-intro="Número de ronda" data-step="3">Ronda {{player.round_number}}: Adivina el número secreto</h3>
 
         <p>
-            You are Player B. Your task is to guess the secret number.
+            Eres el Jugador B. Tu tarea es adivinar el número secreto.
         </p>
 
-        <div class="d-flex justify-content-center" data-intro="Message Player A." data-step="5" id="message-box">
+        <div class="d-flex justify-content-center" data-intro="Mensaje del Jugador A." data-step="5" id="message-box">
             <div class="card text-dark bg-light mb-3" style="width: 24rem;">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Player A's message:</h5>
-                    <p class="card-text">To receive the highest payoff, you should guess <b><span id="encoded_message"></span> </b>.</p>
+                    <h5 class="card-title">Mensaje del Jugador A:</h5>
+                    <p class="card-text">Para recibir la mayor ganancia, deberías elegir <b><span id="encoded_message"></span> </b>.</p>
                 </div>
             </div>
         </div>
@@ -33,11 +33,11 @@
         
             <div id="decode_task" class="column ">
                 <p>
-                    What is the number that Player A intended to send?
+                    ¿Cuál es el número que el Jugador A intentó enviar?
                     <p>
                         <select name="math_solution" id="math_solution" class="form-select form-select-lg" oninput="valueInput(this.value)">
-                            <option value="" selected>Choose here</option>
-                            <option value="0">❌ Player A did not send a number</option>
+                            <option value="" selected>Elige aquí</option>
+                            <option value="0">❌ El Jugador A no envió un número</option>
                             <option value="1">1️⃣</option>
                             <option value="2">2️⃣</option>
                             <option value="3">3️⃣</option>
@@ -52,7 +52,7 @@
             <div class="column">
                 <div id="solution_button" class="hidden-paragraph">
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <input id="info_button2" type="button" value="Submit solution" onclick="checkSolution();" />
+                        <input id="info_button2" type="button" value="Enviar solución" onclick="checkSolution();" />
                     </div>
                 </div>
             </div>
@@ -65,10 +65,10 @@
 
         <div id="receiver_guess" class="hidden-paragraph">
         <p>
-            Please guess the secret number. You can enter any number between 1 and 7, including decimals.
+            Por favor, adivina el número secreto. Puedes ingresar cualquier número entre 1 y 7, incluyendo decimales.
         </p>
 
-        <h4 class="card-title" data-intro="Guess slider" data-step="6">Move the slider to select your guess.</h4>
+        <h4 class="card-title" data-intro="Deslizador de adivinanza" data-step="6">Mueve el deslizador para seleccionar tu adivinanza.</h4>
         <br>
         <div class="slider-container">
             <div class="slider-labels">
@@ -85,9 +85,9 @@
                 <h5 id="description"></h5>
         </div>
 
-        <div id="submit_button" class="hidden-paragraph" data-intro="Submit-Button" data-step="7">
+        <div id="submit_button" class="hidden-paragraph" data-intro="Botón de Envío" data-step="7">
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
             </div>
         </div>
         </div>
@@ -100,7 +100,7 @@
                 document.getElementById("slider").setAttribute("max", js_vars.max_guess);
                 document.getElementById("slider").setAttribute("min", js_vars.min_guess);
                 let receiver_guess = parseFloat(input.value).toFixed(1);
-                description.innerText = `Your guessed number: ${receiver_guess}`;
+                description.innerText = `Tu número adivinado: ${receiver_guess}`;
 
                 if (parseFloat(input.value) >= 1 && parseFloat(input.value) <= 7) {
                     show_text(submit_button);
@@ -168,7 +168,7 @@
         }
         else {
             show_text(warning_message);
-            document.getElementById('warning_message').innerHTML = "Incorrect solution. Please wait 5 seconds and try again.";
+            document.getElementById('warning_message').innerHTML = "Solución incorrecta. Por favor espera 5 segundos e inténtalo de nuevo.";
             hide_text(solutionButton);
             hide_text(decodeTask);
             setTimeout(show_text, 5000, solutionButton);
@@ -181,7 +181,7 @@
 
 {% block styles %}
 
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 

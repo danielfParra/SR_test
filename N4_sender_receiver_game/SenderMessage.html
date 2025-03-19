@@ -13,17 +13,18 @@
 
     <!-- Right Pane -->
     <div class="right-pane" style="width: 50%; background-color: #fff; padding: 20px; box-sizing: border-box; overflow-y: auto;">
-        <h3>Round {{player.round_number}}: Send a Message to Player B</h3>
+        <h3>Ronda {{player.round_number}}: Envía un mensaje al Jugador B</h3>
 
         <p>
+
             <label for="id_sender_choice" style="font-size: 20px;">
-                Choose a number to send as a message to Player B.
+                Elige un número para enviar como mensaje al Jugador B.
             </label>
-            <p data-intro="Choose your number" data-step="5">
+            <p data-intro="Elige tu número" data-step="5">
             <select name="sender_choice" id="sender_choice" class="form-select form-select-lg" oninput="valueInput(this.value)">
-                <option value="" selected>Choose here</option>
+                <option value="" selected>Elige aquí</option>
                 {{ if player.participant.treatment != "Babbling" }}
-                <option value="8">🤖 Send True Secret Number (via Computer)</option>
+                <option value="8">🤖 Enviar número Secreto (vía Computador)</option>
                 {{ endif }}
                 <option value="1">1️⃣</option>
                 <option value="2">2️⃣</option>
@@ -32,7 +33,7 @@
                 <option value="5">5️⃣</option>
                 <option value="6">6️⃣</option>
                 <option value="7">7️⃣</option>
-                
+
             </select>
         </p>
         </p>
@@ -44,13 +45,13 @@
             <div class="d-flex justify-content-center">
                 <div class="card text-dark bg-light mb-3" style="width: 24rem;">
                     <div class="card-body text-center">
-                        <p class="card-text">To receive the highest payoff, you should guess <b><span id="message"></span></b>.</p>
+                        <p class="card-text">Para recibir la mayor ganancia, deberías elegir <b><span id="message"></span></b>.</p>
                     </div>
                 </div>
             </div>
 
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
             </div>
         </div>
     </div>
@@ -66,16 +67,16 @@
         const preMessageSpan = document.getElementById('pre_message');
 
         if (parseFloat(input_answer) >= 1 && parseFloat(input_answer) <= 7) {
-            preMessageSpan.innerHTML = "Based on your choice, Player B will receive the following message:";
+            preMessageSpan.innerHTML = "Basado en tu elección, el Jugador B recibirá el siguiente mensaje:";
             messageSpan.innerHTML = input_answer;
             show_text(confirmButton);
         } else if (parseFloat(input_answer) === 8) {
-            preMessageSpan.innerHTML = "Based on your choice, the computer will replace the \"X\" below with the true secret number:";
+            preMessageSpan.innerHTML = "Basado en tu elección, la computadora reemplazará la \"X\" a continuación con el verdadero número secreto:";
             messageSpan.innerHTML = "X";
             show_text(confirmButton);
         }
         else {
-            messageSpan.innerHTML = "Choose a number!";
+            messageSpan.innerHTML = "¡Elige un número!";
             hide_text(confirmButton);
         }
     };

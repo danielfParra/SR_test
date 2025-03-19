@@ -1,9 +1,9 @@
 {{ block title }}
-We Will Start the Game on the Next Screen
- {{ endblock }}
+Comenzaremos el Juego en la Próxima Pantalla
+{{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 {{ endblock }}
@@ -14,25 +14,31 @@ We Will Start the Game on the Next Screen
 
     {{ if player.participant.role == "Player A" }}
     <p>
-        We will now start the game. In each round, you will have <b>{{Constants.TIME_PER_ROUND }} seconds time</b> to
-        choose which message to send to Player B. Player B will then have {{Constants.TIME_PER_ROUND }} seconds
-        time to make a guess. After Player B makes a guess, you will observe feedback for 5 seconds.
-        Then, a new round starts.
+        Ahora comenzaremos el juego. En cada ronda, tendrás <b>{{Constants.TIME_PER_ROUND }} segundos</b> para
+        elegir qué mensaje enviar al Jugador B.
+    </p>
+    <p>
+        Luego, el Jugador B tendrá {{Constants.TIME_PER_ROUND }} segundos
+        para hacer una suposición. Después de que el Jugador B haga una suposición, observarás la retroalimentación durante 5 segundos.
+        Luego, comienza una nueva ronda.
     </p>
 
     {{ else }}
 
     <p>
-        We will now start the game. In each round, Player A will have <b>{{Constants.TIME_PER_ROUND }} seconds time</b> to
-        choose which message to send to you. You will then have {{Constants.TIME_PER_ROUND }} seconds time
-        to make a guess. After you make a guess, you will observe feedback for 5 seconds.
-        Then, a new round starts.
+        Ahora comenzaremos el juego. En cada ronda, el Jugador A tendrá <b>{{Constants.TIME_PER_ROUND }} segundos</b> para
+        elegir qué mensaje enviarte.
+    </p>
+    <p>
+        Luego, tendrás {{Constants.TIME_PER_ROUND }} segundos para
+        hacer una suposición. Después de que hagas una suposición, observarás la retroalimentación durante 5 segundos.
+        Luego, comienza una nueva ronda.
     </p>
 
     {{ endif }}    
 
     </div>
 </div>
-    {{ next_button }}
+    <button class="otree-btn-next btn btn-primary">Continuar</button>
 
 {{ endblock }}

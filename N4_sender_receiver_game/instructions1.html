@@ -1,9 +1,9 @@
 {{ block title }}
-The Game
+El Juego
 {{ endblock }}
 
 {{ block styles }}
-<!-- Load the custom css styles -->
+<!-- Cargar los estilos CSS personalizados -->
 <link rel="stylesheet" href="{% static 'global/myStyle.css' %}">
 <link rel="stylesheet" href="{% static 'global/myStyleButton.css' %}">
 
@@ -15,20 +15,23 @@ The Game
 <div class="card bg-light m-3">
     <div class="card-body ">
 
-    <h3><i class="fas fa-info-circle"></i> Instructions</h3>
+    <h3><i class="fas fa-info-circle"></i> Instrucciones</h3>
 
     <p>
-        Today, you will be randomly paired with another participant to play a game.
-        The computer has randomly assigned you the role of <b>Player A or Player B,</b> which you will keep for
-        the <b>{{ Constants.num_rounds }} rounds of the game.</b>
-        We will tell you your role after we have explained the game. In each round, if you are a Player A,
-        you will be randomly matched with a Player B, and vice versa. <b>Your partner will change randomly from
-        one round to the next.</b> Neither of you will know the identity of the other, and all interactions will
-        be anonymized by the computers.
+        Hoy, jugarás un juego con otro participante en esta sala elegido al azar por el computador.
+        Se te asignará el rol de <b>Jugador A</b> o <b>Jugador B</b> durante todo el juego,
+        que dura <b>{{ Constants.num_rounds }} rondas</b>.
+        Te diremos tu rol después de explicar las reglas.
+    </p>
+    <p>
+        En cada ronda, si eres el Jugador A, serás emparejado al azar con un Jugador B, y viceversa.
+        <b>Tu compañero cambia cada ronda</b>, y ninguno de los dos conocerá la identidad del otro.
+        Todas las interacciones son anónimas.
     </p>
 
     <p>
-        This is a game where Player A sends a message to Player B, who then guesses a secret number. The payoffs for both players depend on Player B's guess and the secret number. 
+        En este juego, el Jugador A envía un mensaje al Jugador B, quien luego intenta adivinar un número secreto.
+        Las ganancias de ambos jugadores dependen de la suposición del Jugador B y del número secreto.
     </p>
 
       <p>
@@ -39,33 +42,34 @@ The Game
 
 
     <h3>
-        <i class="fas fa-gamepad"></i>   How the Game Works
+        <i class="fas fa-gamepad"></i>   Cómo Funciona el Juego
     </h3>
 
  <p>
-    Each round of the game has <b>four steps.</b>
+    Cada ronda del juego tiene <b>cuatro pasos.</b>
 </p>
 <ol>
     <li>
-       <i class="fas fa-dice"></i>  The computer generates a <b>secret number</b>, which is <b>1, 2, 3, 4, 5, 6, or 7.</b>
+       <i class="fas fa-dice"></i>  El computador genera un <b>número secreto</b>, que es <b>1, 2, 3, 4, 5, 6, o 7.</b>
     </li>
     <br>
     <li>
-        <i class="fa fa-envelope" aria-hidden="true"></i> Player A sends <b>a message</b> to Player B saying <b>"To receive the highest payoff, you should guess X."</b>
-        <b>Player A can choose any number</b> 1, 2, 3, 4, 5, 6, or 7 for X. You will learn more about Player A's exact choice options below.
+        <i class="fa fa-envelope" aria-hidden="true"></i> El Jugador A envía <b>un mensaje</b> al Jugador B diciendo <b>"Para recibir la mayor ganancia, deberías elegir X."</b>
+        <b>El Jugador A puede elegir cualquier número</b> 1, 2, 3, 4, 5, 6, o 7 como valor de X. Explicaremos más sobre las opciones exactas del Jugador A a continuación.
     </li>
     <br>
     <li>
-        <i class="fas fa-question-circle"></i> Player B <b>observes</b> the <b>message</b> and <b>guesses the secret number.</b>
-        Player B can <b>guess any number</b> between 1 and 7, including two-digit numbers.
-        For example, a Player B who thinks that 1 and 2 are equally likely can guess 1.50, and a Player B
-        who thinks that the secret number is either 4 or 5 but most likely 5 can make a guess between
-        4 and 5 but closer to 5, such as 4.8. {{ if player.participant.treatment == "Decode" }}Sometimes, Player B will have to <b>decode</b> the message before making a guess. You will learn more about this later.{{ endif }}
+        <i class="fas fa-question-circle"></i> El Jugador B <b>observa</b> el <b>mensaje</b> y <b>adivina el número secreto.</b>
+        El Jugador B puede <b>adivinar cualquier número</b> entre 1 y 7, incluyendo números con decimales.
+        Por ejemplo, un Jugador B que piensa que 1 y 2 son igualmente probables puede adivinar 1.50, y un Jugador B
+        que piensa que el número secreto es 4 o 5 pero más probablemente 5 puede hacer una suposición entre
+        4 y 5 pero más cerca de 5, como 4.8. {{ if player.participant.treatment == "Decode" }}A veces, el Jugador B tendrá que <b>descifrar</b> el mensaje antes de hacer una suposición. Explicaremos mejor esto más adelante.{{ endif }}
     </li>
+
     <br>
     <li>
-       <i class="fas fa-chart-bar"></i>  Both Player A and Player B will receive <b>feedback.</b>
-        This feedback will include the secret number generated by the computer, Player A's message, and Player B's guess.
+       <i class="fas fa-chart-bar"></i>  Tanto el Jugador A como el Jugador B recibirán <b>retroalimentación.</b>
+        Esta retroalimentación incluirá el número secreto generado por el computador, el mensaje del Jugador A y la suposición del Jugador B.
     </li>
 </ol>
 
@@ -80,27 +84,25 @@ The Game
 <p></p>
 
 <p>
-    <b> How does the computer generate the secret number?</b> <br>
-    You can think of the computer as a device that randomly selects one of
-    seven balls from an urn that are numbered 1, 2, 3, 4, 5, 6, 7.
+    <b> ¿Cómo elige el computador el número secreto?</b> <br>
+    Imagina una urna que contiene bolas numeradas del 1 al 7.
+    Cada ronda, el computador elige una bola al azar.
 </p>
 
  <div class="d-flex justify-content-center">
-    <img src="{% static 'global/urn.png' %}" alt="Urn Image" class="img-fluid" width="50%">
+    <img src="{% static 'global/urn.png' %}" alt="Imagen de Urna" class="img-fluid" width="50%">
  </div>
 <br>
 
+<p>
+    Dado que hay exactamente una bola para cada número, <b>cada número tiene la misma probabilidad de ser elegido.</b>
+    En promedio, puedes esperar que el número secreto sea alrededor de 4.
+</p>
 
 <p>
-    As the urn contains one ball of each number, the <b>probability of generating any given
-    number between 1 and 7 is equal.</b> Consequently,
-    <b>you can reasonably assume</b> that the secret number will, <b>on average, be equal to 4.</b>
+    La selección en cada ronda es completamente aleatoria. Esto significa que las rondas anteriores no te ayudarán a predecir el próximo número secreto.
 </p>
-<p>
-    These draws are <b>completely independent</b> across rounds. This means that you should <b>not strategize</b>
-    about the value of the secret number based on the value of secret number in a previous round.
-</p>
-</p>
+
 <p>
     <input id="info_button4" type="button" value="&#xf178" onclick="buttonAppear(); button_click(info_button4, paragraph4);" />
 </p>
@@ -109,19 +111,25 @@ The Game
 
 <div id="paragraph4" class="hidden-paragraph">
     <p>
-    <b>Does Player A know the secret number when sending the message?</b><br> No, Player A does <b>not know</b> the secret number when sending the message.<br>
+    <b>¿Sabe el Jugador A el número secreto?</b><br> No, el Jugador A <b>no sabe</b> el número secreto al enviar el mensaje.<br>
     </p>
     <p>
-    <b>What can Player A choose to send?</b><br> Player A can choose any number between 1 and 7 to send as a message to Player B. For example, if Player A chooses “2”,
-    Player B will receive the message "To receive the highest payoff, you should guess 2." {{ if player.participant.treatment != "Babbling" }}</p><p>Instead of sending a specific number, Player A can also <b>delegate</b> the decision to the computer who transmits the <b>true secret number</b> to Player B. If Player A chooses this option, Player B will receive the message "To receive the highest payoff, you should guess X", where the computer will replace X with the true secret number it generated at the start of the round. Since the message format stays the same, Player B will <b>never know</b> whether Player A <b>chose to delegate</b> the decision to the computer <b>or not.</b> {{ endif }} 
+        <b>¿Qué mensaje puede enviar el Jugador A?</b><br>
+        El Jugador A puede enviar cualquier número del 1 al 7. Por ejemplo, si el Jugador A elige "2," el Jugador B recibe: "Para recibir la mayor ganancia, deberías elegir 2."
     </p>
+    {{ if player.participant.treatment != "Babbling" }}
+    <p>
+        Alternativamente, el Jugador A puede <b>delegar</b> la elección al computador. El computador entonces enviará al Jugador B un mensaje con el número secreto real.
+        El Jugador B nunca sabrá si el Jugador A eligió delegar o seleccionó el número personalmente.
+    </p>
+    {{ endif }}
 </div>
 
     </div>
     </div>
 
 <div id="next" style="display: none">
-        {{ next_button }}
+        <button class="otree-btn-next btn btn-primary">Continuar</button>
 </div>
 
 
@@ -129,7 +137,7 @@ The Game
 
 {% block scripts %}
 
-<!-- Load the custom javascript functions -->
+<!-- Cargar las funciones JavaScript personalizadas -->
 
 
 <script src="{% static 'global/myJs.js' %}"></script>
