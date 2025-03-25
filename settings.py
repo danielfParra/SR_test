@@ -2,49 +2,6 @@
 from os import environ
 
 SESSION_CONFIGS = [
-    dict(
-        name='sender_receiver_game_babbling',
-        display_name="Sender-Receiver Game: Babbling",
-        num_demo_participants=2,
-        app_sequence=['consent','welcome','decoding_task', 'N5_sender_receiver_game', 'payment_info', 'survey'],
-        num_rounds=3,
-        treatment='Babbling'
-    ),
-    dict(
-        name='sender_receiver_game_truthbutton',
-        display_name="Sender-Receiver Game: TruthButton",
-        num_demo_participants=2,
-        app_sequence=['consent','welcome', 'decoding_task', 'N5_sender_receiver_game', 'payment_info', 'survey'],
-        num_rounds=3,
-        treatment='TruthButton'
-    ),
-    dict(
-        name='sender_receiver_game_decode',
-        display_name="Sender-Receiver Game: Decode",
-        num_demo_participants=2,
-        app_sequence=['consent','welcome','decoding_task', 'N5_sender_receiver_game', 'payment_info', 'survey'],
-        num_rounds=3,
-        treatment='Decode'
-    ),
-    dict(
-        name='BOTs_sender_receiver_game_decode',
-        display_name="BOTS Sender-Receiver Game: Decode",
-        use_browser_bots=True,
-        num_demo_participants=16,
-        app_sequence=['consent', 'welcome', 'N4_sender_receiver_game', 'payment_info', 'survey'],
-        num_rounds=3,
-        treatment='Decode'
-    ),
-    dict(
-        name='survey',
-        display_name="survey",
-        num_demo_participants=20,
-        app_sequence=['survey'],
-        num_rounds=1,
-    ),
-]
-
-SESSION_CONFIGS = [
     # N5 Sessions
     dict(
         name='N5_sender_receiver_game_babbling',
@@ -140,7 +97,7 @@ SESSION_FIELDS = ['treatment']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
