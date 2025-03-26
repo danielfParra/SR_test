@@ -14,4 +14,5 @@ WTForms==2.3.3
 WTForms-SQLAlchemy==0.2
 pandas
 psycopg2-binary
+sentry_sdk
 
