@@ -73,12 +73,16 @@ SESSION_CONFIGS = [
 
 ROOMS = [
     dict(
-        name='N4_room',
-        display_name='Room for N4 sender-receiver sessions',
+        name='S1_room',
+        display_name='Room for session 1 sender-receiver',
     ),
     dict(
-        name='N5_room',
-        display_name='Room for N5 sender-receiver sessions',
+        name='S2_room',
+        display_name='Room for session 2 sender-receiver',
+    ),
+    dict(
+        name='S3_room',
+        display_name='Room for session 3 sender-receiver',
     ),
 ]
 
