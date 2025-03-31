@@ -19,6 +19,9 @@ def creating_session(subsession: Subsession):
     players = subsession.get_players()
     num_players = len(players)
 
+    for i, p in enumerate(subsession.session.get_participants(), start=1):
+        p.label = f'P{i}'
+
     # ✅ If n=2, skip pools and let oTree handle matching
     if num_players == 2:
         players[0].participant.vars['role'] = 'Player A'
