@@ -7,7 +7,7 @@ import json
 class Constants(BaseConstants):
     name_in_url = 'N5_sender_receiver_game'
     players_per_group = 2
-    num_rounds = 4
+    num_rounds = 24
     BONUS_AMOUNT = Currency(4000)
     PIECE_RATE_DECODE = Currency(500)  # New constant for the piece rate per correct answer
     HONESTY_GUESS_BONUS = Currency(1000)  # Bonus for honesty guess
