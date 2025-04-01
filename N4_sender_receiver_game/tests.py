@@ -1,4 +1,4 @@
-from otree.api import Bot
+from otree.api import Bot, Submission
 from . import *
 import random
 
@@ -37,14 +37,28 @@ class PlayerBot(Bot):
         yield Submission(Round_number, check_html=False)
 
         if self.player.id_in_group == 1:
-            yield SenderMessage, {'sender_choice': random.randint(1, 7)}
-
+            yield Submission(SenderMessage, {'sender_choice': random.randint(1, 7)}, check_html=False)
 
         else:
             if self.player.participant.treatment == "Decode":
-                yield ReceiverGuess, {'receiver_guess': random.randint(1, 7), 'math_solution': random.randint(1, 100)}
+                yield Submission(
+                    ReceiverGuess,
+                    {
+                        'receiver_guess': random.randint(1, 7),
+                        'math_solution': random.randint(1, 100),
+                        'guess_confirmed': True,  # ✅ include this!
+                    },
+                    check_html=False
+                )
             else:
-                yield ReceiverGuess, {'receiver_guess': random.randint(1, 7)}
+                yield Submission(
+                    ReceiverGuess,
+                    {
+                        'receiver_guess': random.randint(1, 7),
+                        'guess_confirmed': True,
+                    },
+                    check_html=False
+                )
 
         yield Submission(Results, check_html=False)
 
