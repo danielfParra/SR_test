@@ -7,7 +7,7 @@ import json
 class Constants(BaseConstants):
     name_in_url = 'N4_sender_receiver_game'
     players_per_group = 2
-    num_rounds = 24
+    num_rounds = 4
     BONUS_AMOUNT = Currency(4000)
     PIECE_RATE_DECODE = Currency(500)  # New constant for the piece rate per correct answer
     HONESTY_GUESS_BONUS = Currency(1000)  # Bonus for honesty guess
@@ -100,7 +100,7 @@ class Constants(BaseConstants):
     H_secret_number_generation = 'El número secreto se determina de una manera que ni el Jugador A ni el Jugador B tienen control directo sobre él. Piensa de dónde podría venir el número si ningún jugador es responsable de elegirlo.'
 
     Q_no_knowledge_guess = 'Adivinanza sin información:'
-    Q_no_knowledge_guess_text = 'Supón que no tienes información sobre el número secreto. ¿Cuál es la mejor estrategia para adivinarlo?'
+    Q_no_knowledge_guess_text = 'Supón que no tienes información sobre el número secreto. ¿Cuál es la mejor estrategia para estar más cerca al real?'
     O_no_knowledge_guess = ['Adivinar un número aleatorio', 'Adivinar 7 (el número más alto)',
                             'Adivinar 1 (el número más bajo)', 'Adivinar 4 (el promedio de todos los números posibles)']
     A_no_knowledge_guess = 'Adivinar 4 (el promedio de todos los números posibles)'
@@ -143,6 +143,10 @@ class Group(BaseGroup):
     # Incentivize guesses
     honesty_rate = models.FloatField()
     credulity_rate = models.FloatField()
+
+    # Store the guess confirmation status
+    # This field is used to check if the guess was confirmed by the user
+    guess_confirmed = models.BooleanField(initial=False)
 
 
 class Player(BasePlayer):
@@ -235,15 +239,17 @@ def set_payoffs(group: Group):
     # --- Sender-Receiver Game Payoff Computation ---
 
     # Calculate the sender's probability based on the receiver's guess
-    if group.receiver_guess == 0:
-        sender_prob = 1
+    if group.receiver_guess == 0 and group.sender_message > 0:
+        sender_prob = (group.sender_message - 1) / 6
     elif group.sender_message == 0:
         sender_prob = 0
     else:
         sender_prob = (group.receiver_guess - 1) / 6
 
     # Calculate the receiver's probability based on the given quadratic formula
-    if group.receiver_guess == 0:
+    if group.receiver_guess == 0 and group.sender_message > 0:
+        receiver_prob = 1 - (1 / 36) * (group.secret_number - group.sender_message) ** 2
+    elif group.sender_message == 0:
         receiver_prob = 0
     else:
         receiver_prob = 1 - (1 / 36) * (group.secret_number - group.receiver_guess) ** 2
@@ -620,9 +626,9 @@ class ReceiverGuess(Page):
     @staticmethod
     def get_form_fields(player: Player):
         if player.participant.receiver_type == "decode":
-            return ['receiver_guess', 'math_solution']
+            return ['receiver_guess', 'math_solution', 'guess_confirmed']
         else:
-            return ['receiver_guess']
+            return ['receiver_guess', 'guess_confirmed']
 
     @staticmethod
     def is_displayed(player):
@@ -657,7 +663,7 @@ class ReceiverGuess(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
         # Only set receiver_guess to 0 if timeout happens
-        if timeout_happened:
+        if timeout_happened and not player.group.guess_confirmed:
             player.group.receiver_guess = 0
 
         current_round = player.round_number

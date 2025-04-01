@@ -30,38 +30,56 @@ El juego
     </p>
 
     <p>
-        Para cada ronda relevante para el pago, tus ganancias dependen de las siguientes reglas:
+      <input id="genInfo_button" type="button" value="&#xf178" onclick="button_click(genInfo_button, genInfo);" />
     </p>
 
-      <p>
-        <input id="info_button2" type="button" value="&#xf178" onclick="button_click(info_button2, paragraph2);" />
+    <div id="genInfo" class="hidden-paragraph">
+        
+    <p>
+        <strong>Cuando eres el Jugador A:</strong> En cualquier ronda relevante para el pago,
+        <strong>tu pago depende solo de la suposición del Jugador B.</strong>
+        Específicamente, cuanto mayor sea la suposición de B (en una escala del 1 al 7), mayor será tu probabilidad de recibir el bono.
+        (Tu propio mensaje o el número secreto no afectan tu pago.)
     </p>
+
+    <p>
+        <strong>Cuando eres el Jugador B:</strong> En cualquier ronda relevante para el pago,
+        <strong>tu pago depende solo de qué tan cerca esté tu suposición del número secreto.</strong>
+        Cuanto más cerca esté tu suposición del número secreto, mayor será tu probabilidad de recibir el bono.
+    </p>
+
+    <p>
+      <input id="info_button2" type="button" value="&#xf178" onclick="button_click(info_button2, paragraph2);" />
+    </p>
+
+    </div>
+
+      
 
     <div id="paragraph2" class="hidden-paragraph">
+
+    <p>
+      A continuación, se presentan más detalles sobre estas fórmulas de pago:
+    </p>
 
         <br>
 
     <h3>
          Ganancias del Jugador A:
     </h3>
-<p>
-    <b>El Jugador A</b> puede ganar un bono de <b>{{Constants.BONUS_AMOUNT}} pesos</b> cada ronda, dependiendo de la suposición del Jugador B.
-    La probabilidad de que el Jugador A gane este bono <b>aumenta</b> a medida que la suposición del Jugador B aumenta.
-</p>
 
-
-<p>
-    En pocas palabras, el Jugador A ganará más si el Jugador B elige (adivina) un número más alto.
-</p>
-
-<p>
-    Si deseas ver una descripción detallada de cómo aumenta tu probabilidad de ganar con la suposición del Jugador B,
-    por favor haz clic en el siguiente botón:
+    <p>
+      <b>El Jugador A</b> puede ganar un bono de <b>{{Constants.BONUS_AMOUNT}} pesos</b> dependiendo de la suposición del Jugador B.
+      La probabilidad de que el Jugador A gane este bono <b>aumenta</b> a medida que aumenta la suposición del Jugador B.
+      Esto significa que la suposición más alta (7) le da al Jugador A un 100% de probabilidad de obtener el bono, 
+      mientras que la suposición más baja (1) le da un 0% de probabilidad. 
+      (No importa si la suposición de B es mayor o menor que el propio mensaje de A.)
+  </p>
 
 <!-- Botón para activar el modal -->
 
 <button type="button" name="more_info" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#moreinfo">
-    Detalles del pago del Jugador A
+  Mostrar fórmula detallada de probabilidad
 </button>
 
 <!-- Modal -->
@@ -111,7 +129,7 @@ El juego
 </p>
 
 <p>
-    El principio subyacente de la fórmula es simple: Cuanto más cerca esté la suposición del Jugador B del número más alto posible,
+    El principio subyacente de la fórmula es simple: Cuanto más cerca esté la suposición del Jugador B de la suposición más alta posible,
     mayor será la probabilidad de que el Jugador A reciba un pago de <b>{{Constants.BONUS_AMOUNT}} pesos</b>.
 </p>
 
@@ -133,29 +151,21 @@ El juego
 
   <div id="paragraph3" class="hidden-paragraph">
 <p></p>
-
+<br>
 <h3>
     Ganancias del Jugador B:
 </h3>
 
 <p>
-    El Jugador B también puede ganar un bono de <b>{{ Constants.BONUS_AMOUNT }} pesos</b> cada ronda, dependiendo de la precisión de su suposición.
-    Cuanto más cerca esté la suposición del Jugador B del número secreto, mayor será la probabilidad de ganar el bono.
+  <b>El Jugador B</b> puede ganar un bono de <b>{{ Constants.BONUS_AMOUNT }} pesos</b> dependiendo de qué tan cerca 
+  esté su suposición del número secreto. Cuanto más cerca esté la suposición, mayor será la probabilidad de ganar el bono.
 </p>
-
-<p>
-    En pocas palabras, el Jugador B gana más cuando elige (adivina) un número más cercano al número secreto.
-</p>
-
-<p>
-    Si deseas ver una descripción detallada de cómo aumenta la probabilidad de ganar del Jugador B con la
-    precisión de su suposición, por favor haz clic en el siguiente botón:
 
 
 <!-- Botón para activar el modal -->
 
 <button type="button" name="more_info2" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#moreinfo2">
-    Detalles del pago del Jugador B
+    Mostrar fórmula detallada de probabilidad
 </button>
 
 <!-- Modal -->

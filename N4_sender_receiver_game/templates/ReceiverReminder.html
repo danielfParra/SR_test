@@ -1,28 +1,28 @@
 <div>
-    <h2 style="color: #343a40; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #6c757d; padding-bottom: 10px;">Remember</h2>
-    <p><strong>You are Player B.</strong> You will keep this role for all rounds.</p>
-    <p><strong>Your task:</strong> Guess the secret number as accurately as possible.</p>
+    <h2 style="color: #343a40; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #6c757d; padding-bottom: 10px;">Recuerda</h2>
+    <p><strong>Eres el Jugador B.</strong> Mantendrás este rol durante todas las rondas.</p>
+    <p><strong>Tu tarea:</strong> Adivinar el número secreto lo más cercano al real posible.</p>
   
     <br>
-    <h4 style="text-align: left">Payoff rules:</h4>
+    <h4 style="text-align: left">Reglas de pago:</h4>
     <ul>
-        <li>A <strong>higher</strong> 📈 guess → <strong>More</strong> money for Player A.</li>
-        <li>A <strong>closer</strong> 🎯 guess to the secret number → <strong>More</strong> money for you.</li>
+        <li>Adivinas un número <strong>alto</strong> 📈 (en la escala del 1 al 7) → <strong>Más</strong> dinero para el Jugador A.</li>
+        <li>Adivinas un número <strong>correcto</strong> 🎯 (cercano al número secreto) → <strong>Más</strong> dinero para ti.</li>
     </ul>
 
     <br> 
-    <h4 style="text-align: left">Message rules:</h4>
+    <h4 style="text-align: left">Reglas del mensaje:</h4>
     <ul>
-        <li>Player A <strong>did NOT know</strong> the secret number when sending a message.</li>
+        <li>El Jugador A <strong>NO conocía</strong> el número secreto al enviar un mensaje.</li>
         {{ if player.participant.treatment != "Babbling" }} 
-        <li>If Player A <strong>delegated to the computer</strong> 🤖, the message contains the <strong>true secret number</strong>.</li>
+        <li>Si el Jugador A <strong>delegó al computador</strong> 🤖, el mensaje contiene el <strong>verdadero número secreto</strong>.</li>
         {{ endif }}
         {{ if player.participant.treatment == "Decode" }}
-        <li>Two out of four Player Bs must <strong>decode</strong> the message before guessing.</li>
+        <li>Dos de cada cinco Jugadores B deben <strong>descifrar</strong> el mensaje antes de adivinar.</li>
         {{ endif }}
     </ul>
 
     <br>
-    <h4 style="text-align: left">⏳ Time limit: 20 seconds</h4>
-    <p>If you <strong>don’t submit a guess</strong>, your guess will be set to <strong>Player A’s message</strong>.</p>
+    <h4 style="text-align: left">⏳ Límite de tiempo: 20 segundos</h4>
+    <p>Si <strong>no envías una adivinanza</strong>, tu adivinanza será establecida como el <strong>mensaje del Jugador A</strong>.</p>
 </div>

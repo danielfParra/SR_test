@@ -1,13 +1,13 @@
 <div>
     <h2 style="color: #343a40; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #6c757d; padding-bottom: 10px;">Recuerda</h2>
     <p><strong>Eres el Jugador B.</strong> Mantendrás este rol durante todas las rondas.</p>
-    <p><strong>Tu tarea:</strong> Adivina el número secreto lo más exactamente posible.</p>
+    <p><strong>Tu tarea:</strong> Adivinar el número secreto lo más cercano al real posible.</p>
   
     <br>
     <h4 style="text-align: left">Reglas de pago:</h4>
     <ul>
-        <li>Una suposición <strong>más alta</strong> 📈 → <strong>Más</strong> dinero para el Jugador A.</li>
-        <li>Una suposición <strong>más cercana</strong> 🎯 al número secreto → <strong>Más</strong> dinero para ti.</li>
+        <li>Adivinas un número <strong>alto</strong> 📈 (en la escala del 1 al 7) → <strong>Más</strong> dinero para el Jugador A.</li>
+        <li>Adivinas un número <strong>correcto</strong> 🎯 (cercano al número secreto) → <strong>Más</strong> dinero para ti.</li>
     </ul>
 
     <br> 
@@ -18,11 +18,11 @@
         <li>Si el Jugador A <strong>delegó al computador</strong> 🤖, el mensaje contiene el <strong>verdadero número secreto</strong>.</li>
         {{ endif }}
         {{ if player.participant.treatment == "Decode" }}
-        <li>Dos de los Jugadores B deben <strong>descifrar</strong> el mensaje antes de adivinar.</li>
+        <li>Dos de cada cinco Jugadores B deben <strong>descifrar</strong> el mensaje antes de adivinar.</li>
         {{ endif }}
     </ul>
 
     <br>
     <h4 style="text-align: left">⏳ Límite de tiempo: 20 segundos</h4>
-    <p>Si <strong>no envías una suposición</strong>, tu suposición será igual al <strong>mensaje del Jugador A</strong>.</p>
+    <p>Si <strong>no envías una adivinanza</strong>, tu adivinanza será establecida como el <strong>mensaje del Jugador A</strong>.</p>
 </div>

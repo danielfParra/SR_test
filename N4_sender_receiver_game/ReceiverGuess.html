@@ -83,11 +83,18 @@
 
                 <input id="slider" value="0" type="range" name="receiver_guess" oninput="updateDescription(this)" step="0.1" class="form-range" min="1" max="7">
                 <h5 id="description"></h5>
+                <input type="hidden" name="guess_confirmed" value="false">
         </div>
 
-        <div id="submit_button" class="hidden-paragraph" data-intro="Botón de Envío" data-step="7">
+        <div id="submit_button" class="hidden-paragraph" data-intro="Submit-Button" data-step="7">
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
+                <button id="submitBtn" type="button" class="btn btn-success btn-lg btn-block" onclick="lockAndWait()">Submit</button>
+            </div>
+            <!-- Add a waiting message div that will be hidden initially -->
+            <div id="waitingMessage" class="text-center mt-3" style="display: none;">
+                <div class="alert alert-info">
+                    Su elección ha sido registrada. Por favor, espere hasta que expire el tiempo...
+                </div>
             </div>
         </div>
         </div>
@@ -176,6 +183,28 @@
             setTimeout(hide_text, 5000, document.getElementById('warning_message'));
         }
     };
+
+    function lockAndWait() {
+        // Get the slider value
+        const slider = document.getElementById('slider');
+        const sliderValue = parseFloat(slider.value);
+        
+        // Validate input
+        if (isNaN(sliderValue) || sliderValue < 1 || sliderValue > 7) {
+            alert("Please make a valid guess before submitting.");
+            return;
+        }
+        
+        // Set the confirmed field directly
+        document.querySelector('input[name="guess_confirmed"]').value = true;
+        
+        // Visual feedback
+        slider.style.pointerEvents = 'none';
+        slider.style.opacity = '0.7';
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('waitingMessage').style.display = 'block';
+    }
+
 </script>
 {% endblock %}
 

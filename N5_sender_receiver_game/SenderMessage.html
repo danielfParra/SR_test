@@ -23,7 +23,7 @@
             <select name="sender_choice" id="sender_choice" class="form-select form-select-lg" oninput="valueInput(this.value)">
                 <option value="" selected>Elige aquí</option>
                 {{ if player.participant.treatment != "Babbling" }}
-                <option value="8">🤖 Enviar Número Secreto Verdadero (vía Computadora)</option>
+                <option value="8">🤖 Enviar Número Secreto Verdadero (Computador)</option>
                 {{ endif }}
                 <option value="1">1️⃣</option>
                 <option value="2">2️⃣</option>
@@ -50,7 +50,13 @@
             </div>
 
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
+                <button id="submitBtn" type="button" class="btn btn-success btn-lg btn-block" onclick="lockAndWait()">Submit</button>
+            </div>
+            <!-- Add a waiting message div that will be hidden initially -->
+            <div id="waitingMessage" class="text-center mt-3" style="display: none;">
+                <div class="alert alert-info">
+                    Su elección ha sido registrada. Por favor, espere hasta que expire el tiempo...
+                </div>
             </div>
         </div>
     </div>
@@ -87,6 +93,40 @@
     function hide_text (element) {
         element.classList.add('hidden-paragraph');
     };
+
+    // Add the new function for locking inputs and delayed submission
+    function lockAndWait() {
+        // Make sure a selection was made
+        const senderChoice = document.getElementById('sender_choice');
+        if (!senderChoice.value) {
+            alert("Please make a selection before submitting.");
+            return;
+        }
+        
+        // Instead of disabling the dropdown, make it readonly
+        // This still allows the value to be submitted but prevents changes
+        senderChoice.setAttribute('readonly', true);
+        senderChoice.style.pointerEvents = 'none';
+        senderChoice.style.backgroundColor = '#e9ecef';
+        
+        // Disable only the submit button
+        document.getElementById('submitBtn').disabled = true;
+        
+        // Show waiting message
+        document.getElementById('waitingMessage').style.display = 'block';
+        
+        // Mark form as ready for submission
+        // This adds a flag that can be checked by oTree's time limit code
+        const form = document.querySelector('form');
+        const readyField = document.createElement('input');
+        readyField.type = 'hidden';
+        readyField.name = 'form_ready';
+        readyField.value = 'true';
+        form.appendChild(readyField);
+    }
+
+
+
 </script>
 
 {% endblock %}

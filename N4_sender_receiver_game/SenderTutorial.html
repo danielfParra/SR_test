@@ -24,7 +24,7 @@
             <select name="sender_choice" id="sender_choice" class="form-select form-select-lg" oninput="valueInput(this.value)">
                 <option value="" selected>Elige aquí</option>
                 {{ if player.participant.treatment != "Babbling" }}
-                <option value="8">🤖 Enviar número Secreto (vía Computador)</option>
+                <option value="8">🤖 Enviar número secreto verdadero (vía Computador)</option>
                 {{ endif }}
                 <option value="1">1️⃣</option>
                 <option value="2">2️⃣</option>
@@ -72,7 +72,7 @@
                 {   title: 'Resumen del juego',
                     element: '.left-pane', intro: 'Esta parte de la pantalla te ayuda a recordar la configuración del juego. Todos los jugadores verán un recordatorio similar mientras juegan.' },
                 {   title: 'Número de ronda',
-                    element: 'h3', intro: 'Aquí puedes ver en qué ronda estás. En el experimento, \'X\' variará entre 1-30.' },
+                    element: 'h3', intro: 'Aquí puedes ver en qué ronda estás. En el experimento, \'X\' variará entre 1-24.' },
                 {   title: 'Eligiendo un mensaje',
                     element: '#sender_choice', intro: 'Seleccionas tu mensaje eligiendo una de las opciones del menú desplegable.<br> Por favor elige cualquier opción ahora como prueba.' },
                 {   title: 'Tu mensaje al Jugador B',
