@@ -86,4 +86,8 @@ class Demographics(Page):
                    "org_unicef_colombia"
                    ]
 
-page_sequence = [Demographics]
+class Redirect(Page):
+    pass
+
+
+page_sequence = [Demographics, Redirect]
